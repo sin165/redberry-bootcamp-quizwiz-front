@@ -24,6 +24,7 @@ export default {
         'custom-gray-200': '#EAECF0',
         'custom-gray-300': '#D0D5DD',
         'custom-gray-400': '#98A2B3',
+        'custom-gray-450': '#808080',
         'custom-gray-500': '#667085',
         'custom-gray-600': '#475467',
         'custom-gray-700': '#344054',
