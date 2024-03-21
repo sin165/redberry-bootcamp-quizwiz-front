@@ -6,6 +6,12 @@ export default {
       screens: {
         desktop: '1440px'
       },
+      fontFamily: {
+        raleway: ['Raleway', 'sans-serif']
+      },
+      fontSize: {
+        '7.5xl': ['5rem', '3.5rem']
+      },
       spacing: {
         18: '4.5rem'
       },
