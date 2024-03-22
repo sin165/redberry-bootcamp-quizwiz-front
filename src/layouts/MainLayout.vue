@@ -1,19 +1,19 @@
 <template>
-  <MainHeader />
+  <HeaderMain />
   <div class="pt-18">
     <slot />
   </div>
-  <MainFooter />
+  <FooterMain />
 </template>
 
 <script>
-import MainHeader from '@/components/layouts/main/MainHeader.vue'
-import MainFooter from '@/components/layouts/main/MainFooter.vue'
+import HeaderMain from '@/components/layouts/main/HeaderMain.vue'
+import FooterMain from '@/components/layouts/main/FooterMain.vue'
 
 export default {
   components: {
-    MainHeader,
-    MainFooter
+    HeaderMain,
+    FooterMain
   }
 }
 </script>
