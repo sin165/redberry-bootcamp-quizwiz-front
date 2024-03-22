@@ -1,6 +1,6 @@
 <template>
   <header
-    class="fixed w-full flex justify-between items-center h-18 bg-white border-b border-custom-gray-100 pl-4 pr-3 desktop:px-24 desktop:border-[#66666640] z-50"
+    class="fixed w-full flex justify-between items-center h-18 bg-white border-b border-custom-gray-100 pl-4 pr-3 desktop:px-24 desktop:border-custom-gray-500-transparent z-50"
   >
     <div class="flex justify-start items-center gap-14">
       <RouterLink :to="{ name: 'home' }">

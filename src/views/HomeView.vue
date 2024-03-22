@@ -2,7 +2,7 @@
   <MainLayout>
     <main>
       <section class="mt-5">
-        <IconHeroTitle class="ml-12 mb-2 desktop:ml-24 desktop:w-[657px] desktop:h-[258px]" />
+        <IconHeroTitle class="ml-12 mb-2 desktop:ml-24 desktop:w-164 desktop:h-64" />
         <p
           class="ml-12 mb-6 text-lg text-custom-gray-450 font-semibold desktop:text-3xl desktop:ml-24 desktop:mb-0"
         >
@@ -10,16 +10,16 @@
         </p>
         <div class="relative overflow-hidden desktop:pt-28 desktop:overflow-visible">
           <div
-            class="w-full h-[474px] overflow-hidden desktop:absolute desktop:bottom-0 desktop:right-0 desktop:w-[880px] desktop:h-full desktop:overflow-visible"
+            class="w-full h-118 overflow-hidden desktop:absolute desktop:bottom-0 desktop:right-0 desktop:w-220 desktop:h-full desktop:overflow-visible"
           >
-            <div class="h-[119px] desktop:h-0 desktop:ml-32">
+            <div class="h-30 desktop:h-0 desktop:ml-32">
               <IconArtHomepage
-                class="w-[430px] h-[174px] desktop:w-[655px] desktop:h-[340px] desktop:-translate-y-56"
+                class="w-107 h-43 desktop:w-164 desktop:h-85 desktop:-translate-y-56"
               />
             </div>
-            <div class="-ml-7 desktop:w-[880px] desktop:h-[640px] overflow-hidden desktop:ml-0">
+            <div class="-ml-7 desktop:w-220 desktop:h-160 overflow-hidden desktop:ml-0">
               <div
-                class="bg-black size-[486px] desktop:size-[1091px] rounded-full pt-24 pl-24 desktop:ml-0 desktop:pt-60 desktop:pl-60"
+                class="bg-black size-121 desktop:size-274 rounded-full pt-24 pl-24 desktop:ml-0 desktop:pt-60 desktop:pl-60"
               >
                 <IconMissionText class="desktop:w-96 desktop:h-80" />
               </div>

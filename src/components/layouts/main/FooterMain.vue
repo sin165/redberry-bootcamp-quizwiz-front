@@ -1,7 +1,9 @@
 <template>
   <footer class="border-t border-custom-gray-300 text-custom-gray-600 text-xs leading-5">
     <div class="px-10 py-6 desktop:flex desktop:px-24 desktop:py-11">
-      <div class="border-b border-[#D0D5DD66] h-11 desktop:border-none desktop:w-52">
+      <div
+        class="border-b border-custom-gray-300-transparent h-11 desktop:border-none desktop:w-52"
+      >
         <IconLogo />
       </div>
       <div class="pt-6 flex flex-col gap-10 desktop:flex-row desktop:gap-24 desktop:pt-0">
@@ -26,7 +28,7 @@
       </div>
     </div>
     <div
-      class="border-t border-[#D0D5DD66] h-16 flex justify-start items-center px-10 desktop:justify-end desktop:px-24"
+      class="border-t border-custom-gray-300-transparent h-16 flex justify-start items-center px-10 desktop:justify-end desktop:px-24"
     >
       © 2024 QW. All rights reserved
     </div>
