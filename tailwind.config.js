@@ -31,6 +31,7 @@ export default {
         'custom-gray': {
           25: '#FCFCFD',
           50: '#F9FAFB',
+          70: '#F6F6F7',
           100: '#F2F4F7',
           200: '#EAECF0',
           300: '#D0D5DD',
@@ -42,11 +43,13 @@ export default {
           800: '#1D2939',
           900: '#101828',
           '300-transparent': '#D0D5DD66',
-          '500-transparent': '#66666640'
+          '500-transparent': '#66666640',
+          '900-transparent': '#1018284D'
         }
       },
       boxShadow: {
-        solid: '4px 4px 0px 0px #000000'
+        solid: '4px 4px 0px 0px #000000',
+        double: '0px 4px 6px -2px #10182808, 0px 12px 16px -4px #10182814'
       }
     }
   },
