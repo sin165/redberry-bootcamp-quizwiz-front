@@ -23,11 +23,15 @@ export default {
         160: '40rem',
         164: '41rem',
         220: '55rem',
-        274: '68.5rem'
+        274: '68.5rem',
+        '111/240': '46.25%'
       },
       colors: {
         primary: '#4B69FD',
         accent: '#FF5613',
+        'blue-soft': '#EAFAFE80',
+        'lavender-soft': '#FCE7F1',
+        'orange-soft': '#FEF6E7',
         'custom-gray': {
           25: '#FCFCFD',
           50: '#F9FAFB',
