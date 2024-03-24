@@ -1,6 +1,6 @@
 <template>
   <header
-    class="fixed w-full flex justify-between items-center h-18 bg-white border-b border-custom-gray-100 pl-4 pr-3 desktop:px-24 desktop:border-custom-gray-500-transparent z-50"
+    class="fixed w-full flex justify-between items-center h-18 bg-white border-b border-custom-gray-100 pl-4 pr-3 desktop:px-24 desktop:border-custom-gray-500-transparent z-30"
   >
     <div class="flex justify-start items-center gap-14">
       <RouterLink :to="{ name: 'home' }">
@@ -22,11 +22,15 @@
         <span>Log in</span>
         <IconArrowRight class="text-transparent group-hover:text-inherit" />
       </a>
-      <button class="size-10 flex justify-center items-center desktop:hidden">
+      <button
+        class="size-10 flex justify-center items-center desktop:hidden"
+        @click="menuOpen = true"
+      >
         <IconMenu />
       </button>
     </div>
   </header>
+  <HeaderMainMenu v-if="menuOpen" @close="menuOpen = false" />
 </template>
 
 <script>
@@ -34,13 +38,20 @@ import { RouterLink } from 'vue-router'
 import IconLogo from '@/components/icons/IconLogo.vue'
 import IconMenu from '@/components/icons/IconMenu.vue'
 import IconArrowRight from '@/components/icons/IconArrowRight.vue'
+import HeaderMainMenu from '@/components/layouts/main/HeaderMainMenu.vue'
 
 export default {
   components: {
     RouterLink,
     IconLogo,
     IconMenu,
-    IconArrowRight
+    IconArrowRight,
+    HeaderMainMenu
+  },
+  data() {
+    return {
+      menuOpen: false
+    }
   }
 }
 </script>
