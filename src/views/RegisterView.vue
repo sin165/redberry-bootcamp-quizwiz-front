@@ -12,118 +12,58 @@
         <a class="text-primary font-semibold">Log in</a>
       </p>
       <Form class="max-w-107 mt-10 space-y-6" @submit="submitForm">
-        <div>
-          <BaseLabel for="username">Username</BaseLabel>
-          <Field name="username" rules="required|min:3" v-slot="{ field, errors }">
-            <BaseInput
-              id="username"
-              type="text"
-              placeholder="Your username"
-              v-bind="field"
-              :isInvalid="!!errors[0]"
-            />
-            <ValidationError>{{ errors[0] }}</ValidationError>
-          </Field>
+        <FormField
+          name="username"
+          label="Username"
+          placeholder="Your username"
+          rules="required|min:3"
+        />
+        <FormField
+          name="email"
+          label="Email"
+          type="email"
+          placeholder="Example@gmail.com"
+          rules="required|email"
+        />
+        <FormField
+          name="password"
+          label="Create a password"
+          type="password"
+          placeholder="must be 8 characters"
+          rules="required|min:3"
+        />
+        <FormField
+          name="confirmation"
+          label="Confirm password"
+          type="password"
+          placeholder="must be 8 characters"
+          rules="required|confirmed:@password"
+        />
+        <div class="pt-2 pb-3.5">
+          <FormCheckbox name="terms" label="I accept the terms and privacy policy" rules="accept" />
         </div>
-        <div>
-          <BaseLabel for="email">Email</BaseLabel>
-          <Field name="email" rules="required|email" v-slot="{ field, errors }">
-            <BaseInput
-              id="email"
-              type="email"
-              placeholder="Example@gmail.com"
-              v-bind="field"
-              :isInvalid="!!errors[0]"
-            />
-            <ValidationError>{{ errors[0] }}</ValidationError>
-          </Field>
-        </div>
-        <div>
-          <BaseLabel for="password">Create a password</BaseLabel>
-          <Field name="password" rules="required|min:3" v-slot="{ field, errors }">
-            <BaseInput
-              id="password"
-              type="password"
-              placeholder="must be 8 characters"
-              v-bind="field"
-              :isInvalid="!!errors[0]"
-            />
-            <ValidationError>{{ errors[0] }}</ValidationError>
-          </Field>
-        </div>
-        <div>
-          <BaseLabel for="confirmation">Confirm password</BaseLabel>
-          <Field
-            name="confirmation"
-            rules="required|confirmed:@password"
-            v-slot="{ field, errors }"
-          >
-            <BaseInput
-              id="confirmation"
-              type="password"
-              placeholder="must be 8 characters"
-              v-bind="field"
-              :isInvalid="!!errors[0]"
-            />
-            <ValidationError>{{ errors[0] }}</ValidationError>
-          </Field>
-        </div>
-        <div class="pt-2">
-          <Field
-            v-slot="{ field, errors }"
-            name="terms"
-            type="checkbox"
-            :value="true"
-            :unchecked-value="false"
-            rules="accept"
-          >
-            <label class="flex gap-3">
-              <input
-                type="checkbox"
-                name="terms"
-                v-bind="field"
-                :value="true"
-                class="peer hidden"
-              />
-              <div
-                class="size-5 rounded-full border border-custom-gray-400 *:hidden peer-checked:border-none peer-checked:*:block"
-              >
-                <IconChecked />
-              </div>
-              <span class="text-custom-gray-700 text-sm"
-                >I accept the terms and privacy policy</span
-              >
-            </label>
-            <ValidationError>{{ errors[0] }}</ValidationError>
-          </Field>
-        </div>
-        <button class="block w-full h-14 bg-black text-white font-semibold rounded-0.5xl">
-          Sign Up
-        </button>
+        <ButtonBlack>Sign Up</ButtonBlack>
       </Form>
     </template>
   </AuthLayout>
 </template>
 
 <script>
-import { Form, Field } from 'vee-validate'
+import { Form } from 'vee-validate'
 import AuthLayout from '@/layouts/AuthLayout.vue'
 import IconArtRegister from '@/components/icons/IconArtRegister.vue'
-import IconChecked from '@/components/icons/IconChecked.vue'
-import BaseLabel from '@/components/ui/BaseLabel.vue'
-import BaseInput from '@/components/ui/BaseInput.vue'
-import ValidationError from '@/components/ui/ValidationError.vue'
+import FormField from '@/components/shared/FormField.vue'
+import FormCheckbox from '@/components/shared/FormCheckbox.vue'
+import ButtonBlack from '@/components/ui/ButtonBlack.vue'
 
 export default {
   components: {
     Form,
-    Field,
     AuthLayout,
     IconArtRegister,
-    IconChecked,
-    BaseLabel,
-    BaseInput,
-    ValidationError
+    FormField,
+    FormCheckbox,
+    ButtonBlack
   },
   data() {
     return {
