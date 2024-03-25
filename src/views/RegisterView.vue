@@ -14,7 +14,7 @@
       <Form class="max-w-107 mt-10 space-y-6" @submit="submitForm">
         <div>
           <BaseLabel for="username">Username</BaseLabel>
-          <Field name="username" rules="required" v-slot="{ field, errors }">
+          <Field name="username" rules="required|min:3" v-slot="{ field, errors }">
             <BaseInput
               id="username"
               type="text"
@@ -27,7 +27,7 @@
         </div>
         <div>
           <BaseLabel for="email">Email</BaseLabel>
-          <Field name="email" rules="required" v-slot="{ field, errors }">
+          <Field name="email" rules="required|email" v-slot="{ field, errors }">
             <BaseInput
               id="email"
               type="email"
@@ -40,7 +40,7 @@
         </div>
         <div>
           <BaseLabel for="password">Create a password</BaseLabel>
-          <Field name="password" rules="required" v-slot="{ field, errors }">
+          <Field name="password" rules="required|min:3" v-slot="{ field, errors }">
             <BaseInput
               id="password"
               type="password"
@@ -52,10 +52,14 @@
           </Field>
         </div>
         <div>
-          <BaseLabel for="confirm-password">Confirm password</BaseLabel>
-          <Field name="confirm-password" rules="required" v-slot="{ field, errors }">
+          <BaseLabel for="confirmation">Confirm password</BaseLabel>
+          <Field
+            name="confirmation"
+            rules="required|confirmed:@password"
+            v-slot="{ field, errors }"
+          >
             <BaseInput
-              id="confirm-password"
+              id="confirmation"
               type="password"
               placeholder="must be 8 characters"
               v-bind="field"
@@ -66,11 +70,12 @@
         </div>
         <div class="pt-2">
           <Field
-            v-slot="{ field }"
+            v-slot="{ field, errors }"
             name="terms"
             type="checkbox"
             :value="true"
             :unchecked-value="false"
+            rules="accept"
           >
             <label class="flex gap-3">
               <input
@@ -89,6 +94,7 @@
                 >I accept the terms and privacy policy</span
               >
             </label>
+            <ValidationError>{{ errors[0] }}</ValidationError>
           </Field>
         </div>
         <button class="block w-full h-14 bg-black text-white font-semibold rounded-0.5xl">
