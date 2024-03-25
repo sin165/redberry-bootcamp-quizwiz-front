@@ -34,6 +34,7 @@ export default {
         'orange-soft': '#FEF6E7',
         'red-error': '#F04438',
         'red-error-soft': '#FDA29B',
+        'black-transparent': '#000000B2',
         'custom-gray': {
           25: '#FCFCFD',
           50: '#F9FAFB',

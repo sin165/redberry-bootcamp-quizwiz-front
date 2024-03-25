@@ -6,8 +6,12 @@
       </div>
     </template>
     <template #default>
-      <h1 class="font-extrabold text-3xl mb-10">Create account</h1>
-      <Form class="max-w-107 space-y-6" @submit="submitForm">
+      <h1 class="font-extrabold text-3xl text-center desktop:text-left">Create account</h1>
+      <p class="text-center text-black-transparent mt-6 desktop:absolute desktop:-bottom-12">
+        Already have an account?
+        <a class="text-primary font-semibold">Log in</a>
+      </p>
+      <Form class="max-w-107 mt-10 space-y-6" @submit="submitForm">
         <div>
           <BaseLabel for="username">Username</BaseLabel>
           <Field name="username" rules="required" v-slot="{ field, errors }">
