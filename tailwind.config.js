@@ -23,11 +23,17 @@ export default {
         160: '40rem',
         164: '41rem',
         220: '55rem',
-        274: '68.5rem'
+        274: '68.5rem',
+        '111/240': '46.25%'
       },
       colors: {
         primary: '#4B69FD',
         accent: '#FF5613',
+        'blue-soft': '#EAFAFE80',
+        'lavender-soft': '#FCE7F1',
+        'orange-soft': '#FEF6E7',
+        'red-error': '#F04438',
+        'red-error-soft': '#FDA29B',
         'custom-gray': {
           25: '#FCFCFD',
           50: '#F9FAFB',
@@ -50,6 +56,9 @@ export default {
       boxShadow: {
         solid: '4px 4px 0px 0px #000000',
         double: '0px 4px 6px -2px #10182808, 0px 12px 16px -4px #10182814'
+      },
+      borderRadius: {
+        '0.5xl': '0.625rem'
       }
     }
   },

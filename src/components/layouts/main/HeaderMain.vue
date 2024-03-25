@@ -9,11 +9,12 @@
     </div>
     <div class="flex justify-end items-center gap-4">
       <a href="#" class="hidden desktop:flex group">
-        <span
+        <RouterLink
+          :to="{ name: 'register' }"
           class="bg-black text-white px-6 py-3 rounded text-sm font-bold border border-white group-hover:bg-white group-hover:text-black group-hover:border-black group-hover:shadow-solid group-hover:-translate-x-1 group-hover:-translate-y-1"
         >
           Sign up
-        </span>
+        </RouterLink>
       </a>
       <a
         href="#"
