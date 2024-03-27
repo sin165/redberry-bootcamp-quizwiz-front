@@ -1,5 +1,5 @@
 <template>
-  <AuthLayout :showBackButton="hasPreviousRoute">
+  <LayoutsAuth :showBackButton="hasPreviousRoute">
     <template #art>
       <div class="size-full bg-blue-soft flex items-center">
         <IconArtRegister />
@@ -12,14 +12,14 @@
         <a class="text-primary font-semibold">Log in</a>
       </p>
       <Form v-slot="{ errors }" class="max-w-107 mt-10 space-y-6" @submit="submitForm">
-        <FormField
+        <BaseField
           name="username"
           label="Username"
           placeholder="Your username"
           rules="required|min:3"
           :error="errors.username"
         />
-        <FormField
+        <BaseField
           name="email"
           label="Email"
           type="email"
@@ -27,7 +27,7 @@
           rules="required|email"
           :error="errors.email"
         />
-        <FormField
+        <BaseField
           name="password"
           label="Create a password"
           type="password"
@@ -35,7 +35,7 @@
           rules="required|min:3"
           :error="errors.password"
         />
-        <FormField
+        <BaseField
           name="confirmation"
           label="Confirm password"
           type="password"
@@ -44,30 +44,30 @@
           :error="errors.confirmation"
         />
         <div class="pt-2 pb-3.5">
-          <FormCheckbox name="terms" label="I accept the terms and privacy policy" rules="accept" />
+          <BaseCheckbox name="terms" label="I accept the terms and privacy policy" rules="accept" />
         </div>
-        <ButtonBlack>Sign Up</ButtonBlack>
+        <BaseButton color="black">Sign Up</BaseButton>
       </Form>
     </template>
-  </AuthLayout>
+  </LayoutsAuth>
 </template>
 
 <script>
 import { Form } from 'vee-validate'
-import AuthLayout from '@/layouts/AuthLayout.vue'
+import LayoutsAuth from '@/layouts/LayoutsAuth.vue'
 import IconArtRegister from '@/components/icons/IconArtRegister.vue'
-import FormField from '@/components/shared/FormField.vue'
-import FormCheckbox from '@/components/shared/FormCheckbox.vue'
-import ButtonBlack from '@/components/ui/ButtonBlack.vue'
+import BaseField from '@/components/base/BaseField.vue'
+import BaseCheckbox from '@/components/base/BaseCheckbox.vue'
+import BaseButton from '@/components/base/BaseButton.vue'
 
 export default {
   components: {
     Form,
-    AuthLayout,
+    LayoutsAuth,
     IconArtRegister,
-    FormField,
-    FormCheckbox,
-    ButtonBlack
+    BaseField,
+    BaseCheckbox,
+    BaseButton
   },
   data() {
     return {

@@ -31,7 +31,7 @@
       </button>
     </div>
   </header>
-  <HeaderMainMenu v-if="menuOpen" @close="menuOpen = false" />
+  <TheHeaderMenu v-if="menuOpen" @close="menuOpen = false" />
 </template>
 
 <script>
@@ -39,7 +39,7 @@ import { RouterLink } from 'vue-router'
 import IconLogo from '@/components/icons/IconLogo.vue'
 import IconMenu from '@/components/icons/IconMenu.vue'
 import IconArrowRight from '@/components/icons/IconArrowRight.vue'
-import HeaderMainMenu from '@/components/layouts/main/HeaderMainMenu.vue'
+import TheHeaderMenu from '@/components/shared/TheHeaderMenu.vue'
 
 export default {
   components: {
@@ -47,7 +47,7 @@ export default {
     IconLogo,
     IconMenu,
     IconArrowRight,
-    HeaderMainMenu
+    TheHeaderMenu
   },
   data() {
     return {
