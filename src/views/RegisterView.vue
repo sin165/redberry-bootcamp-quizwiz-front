@@ -11,12 +11,13 @@
         Already have an account?
         <a class="text-primary font-semibold">Log in</a>
       </p>
-      <Form class="max-w-107 mt-10 space-y-6" @submit="submitForm">
+      <Form v-slot="{ errors }" class="max-w-107 mt-10 space-y-6" @submit="submitForm">
         <FormField
           name="username"
           label="Username"
           placeholder="Your username"
           rules="required|min:3"
+          :error="errors.username"
         />
         <FormField
           name="email"
@@ -24,6 +25,7 @@
           type="email"
           placeholder="Example@gmail.com"
           rules="required|email"
+          :error="errors.email"
         />
         <FormField
           name="password"
@@ -31,6 +33,7 @@
           type="password"
           placeholder="must be 8 characters"
           rules="required|min:3"
+          :error="errors.password"
         />
         <FormField
           name="confirmation"
@@ -38,6 +41,7 @@
           type="password"
           placeholder="must be 8 characters"
           rules="required|confirmed:@password"
+          :error="errors.confirmation"
         />
         <div class="pt-2 pb-3.5">
           <FormCheckbox name="terms" label="I accept the terms and privacy policy" rules="accept" />
