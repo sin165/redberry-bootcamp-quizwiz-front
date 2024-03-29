@@ -29,11 +29,13 @@ export default {
       colors: {
         primary: '#4B69FD',
         accent: '#FF5613',
+        'blue-light': '#BCC7FF',
         'blue-soft': '#EAFAFE80',
         'lavender-soft': '#FCE7F1',
         'orange-soft': '#FEF6E7',
         'red-error': '#F04438',
         'red-error-soft': '#FDA29B',
+        'black-transparent': '#000000B2',
         'custom-gray': {
           25: '#FCFCFD',
           50: '#F9FAFB',

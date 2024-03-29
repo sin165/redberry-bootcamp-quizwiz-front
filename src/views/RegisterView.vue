@@ -1,49 +1,73 @@
 <template>
-  <AuthLayout :showBackButton="hasPreviousRoute">
+  <LayoutsAuth :showBackButton="hasPreviousRoute">
     <template #art>
       <div class="size-full bg-blue-soft flex items-center">
         <IconArtRegister />
       </div>
     </template>
     <template #default>
-      <h1 class="font-extrabold text-3xl mb-10">Create account</h1>
-      <Form class="max-w-107 space-y-6" @submit="submitForm">
-        <div>
-          <BaseLabel for="username">Username</BaseLabel>
-          <Field name="username" rules="required" v-slot="{ field, errors }">
-            <BaseInput
-              id="username"
-              type="text"
-              placeholder="Your username"
-              v-bind="field"
-              :isInvalid="!!errors[0]"
-            />
-            <ValidationError>{{ errors[0] }}</ValidationError>
-          </Field>
+      <h1 class="font-extrabold text-3xl text-center desktop:text-left">Create account</h1>
+      <p class="text-center text-black-transparent mt-6 desktop:absolute desktop:-bottom-12">
+        Already have an account?
+        <a class="text-primary font-semibold">Log in</a>
+      </p>
+      <Form v-slot="{ errors }" class="max-w-107 mt-10 space-y-6" @submit="submitForm">
+        <BaseField
+          name="username"
+          label="Username"
+          placeholder="Your username"
+          rules="required|min:3"
+          :error="errors.username"
+        />
+        <BaseField
+          name="email"
+          label="Email"
+          type="email"
+          placeholder="Example@gmail.com"
+          rules="required|email"
+          :error="errors.email"
+        />
+        <BaseField
+          name="password"
+          label="Create a password"
+          type="password"
+          placeholder="must be 8 characters"
+          rules="required|min:3"
+          :error="errors.password"
+        />
+        <BaseField
+          name="confirmation"
+          label="Confirm password"
+          type="password"
+          placeholder="must be 8 characters"
+          rules="required|confirmed:@password"
+          :error="errors.confirmation"
+        />
+        <div class="pt-2 pb-3.5">
+          <BaseCheckbox name="terms" label="I accept the terms and privacy policy" rules="accept" />
         </div>
-        <button>Sign Up</button>
+        <BaseButton color="black">Sign Up</BaseButton>
       </Form>
     </template>
-  </AuthLayout>
+  </LayoutsAuth>
 </template>
 
 <script>
-import { Form, Field } from 'vee-validate'
-import AuthLayout from '@/layouts/AuthLayout.vue'
+import { Form } from 'vee-validate'
+import LayoutsAuth from '@/layouts/LayoutsAuth.vue'
 import IconArtRegister from '@/components/icons/IconArtRegister.vue'
-import BaseLabel from '@/components/ui/BaseLabel.vue'
-import BaseInput from '@/components/ui/BaseInput.vue'
-import ValidationError from '@/components/ui/ValidationError.vue'
+import BaseField from '@/components/base/BaseField.vue'
+import BaseCheckbox from '@/components/base/BaseCheckbox.vue'
+import BaseButton from '@/components/base/BaseButton.vue'
 
 export default {
   components: {
     Form,
-    Field,
-    AuthLayout,
+    LayoutsAuth,
     IconArtRegister,
-    BaseLabel,
-    BaseInput,
-    ValidationError
+    BaseField,
+    BaseCheckbox,
+    BaseButton
   },
   data() {
     return {

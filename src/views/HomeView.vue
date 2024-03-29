@@ -1,5 +1,5 @@
 <template>
-  <MainLayout>
+  <LayoutsMain>
     <main>
       <section class="mt-5">
         <IconHeroTitle class="ml-12 mb-2 desktop:ml-24 desktop:w-164 desktop:h-64" />
@@ -48,11 +48,11 @@
         </div>
       </section>
     </main>
-  </MainLayout>
+  </LayoutsMain>
 </template>
 
 <script>
-import MainLayout from '@/layouts/MainLayout.vue'
+import LayoutsMain from '@/layouts/LayoutsMain.vue'
 import IconHeroTitle from '@/components/icons/IconHeroTitle.vue'
 import IconArtHomepage from '@/components/icons/IconArtHomepage.vue'
 import IconMissionText from '@/components/icons/IconMissionText.vue'
@@ -60,7 +60,7 @@ import IconArrowUpRight from '@/components/icons/IconArrowUpRight.vue'
 
 export default {
   components: {
-    MainLayout,
+    LayoutsMain,
     IconHeroTitle,
     IconArtHomepage,
     IconMissionText,

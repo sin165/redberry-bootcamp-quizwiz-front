@@ -4,6 +4,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import '@/plugins/vee-validate/rules'
+import '@/plugins/vee-validate/messages'
 
 const app = createApp(App)
 

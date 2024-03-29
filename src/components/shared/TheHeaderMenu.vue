@@ -12,12 +12,12 @@
       <div class="flex items-center border-b h-18 border-custom-gray-300">
         <a href="#" class="text-lg font-semibold text-custom-gray-900">Quizzes</a>
       </div>
-      <a
-        href="#"
+      <RouterLink
+        :to="{ name: 'register' }"
         class="block mt-5 bg-black text-white text-sm font-bold text-center p-3.5 rounded"
       >
         Sign up
-      </a>
+      </RouterLink>
       <a
         href="#"
         class="block mt-5 bg-custom-gray-70 text-primary text-sm font-bold text-center p-3.5 rounded"
