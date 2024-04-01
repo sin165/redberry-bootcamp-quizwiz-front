@@ -17,7 +17,8 @@
           label="Username"
           placeholder="Your username"
           rules="required|min:3"
-          :error="errors.username"
+          :error="errorsFromBackend.username ?? errors.username"
+          @focusout="errorsFromBackend.username = null"
         />
         <BaseField
           name="email"
@@ -25,7 +26,8 @@
           type="email"
           placeholder="Example@gmail.com"
           rules="required|email"
-          :error="errors.email"
+          :error="errorsFromBackend.email ?? errors.email"
+          @focusout="errorsFromBackend.email = null"
         />
         <BaseField
           name="password"
@@ -46,7 +48,7 @@
         <div class="pt-2 pb-3.5">
           <BaseCheckbox name="terms" label="I accept the terms and privacy policy" rules="accept" />
         </div>
-        <BaseButton color="black">Sign Up</BaseButton>
+        <BaseButton color="black" :loading="loading">Sign Up</BaseButton>
       </Form>
     </template>
   </LayoutsAuth>
@@ -54,6 +56,7 @@
 
 <script>
 import { Form } from 'vee-validate'
+import { register } from '@/services/api/auth'
 import LayoutsAuth from '@/layouts/LayoutsAuth.vue'
 import IconArtRegister from '@/components/icons/IconArtRegister.vue'
 import BaseField from '@/components/base/BaseField.vue'
@@ -62,6 +65,7 @@ import BaseButton from '@/components/base/BaseButton.vue'
 
 export default {
   components: {
+    // eslint-disable-next-line vue/no-reserved-component-names
     Form,
     LayoutsAuth,
     IconArtRegister,
@@ -71,7 +75,9 @@ export default {
   },
   data() {
     return {
-      hasPreviousRoute: false
+      hasPreviousRoute: false,
+      errorsFromBackend: {},
+      loading: false
     }
   },
   beforeRouteEnter(to, from, next) {
@@ -80,8 +86,25 @@ export default {
     })
   },
   methods: {
-    submitForm(values) {
-      console.log(values)
+    async submitForm(values) {
+      if (this.errorsFromBackend.username || this.errorsFromBackend.email) {
+        return
+      }
+      this.loading = true
+      try {
+        const { status, data } = await register(values)
+        if (status === 201) {
+          // TODO: show green tost - email has been sent
+        } else if (status === 422) {
+          this.errorsFromBackend.username = data.errors.username ? data.errors.username[0] : null
+          this.errorsFromBackend.email = data.errors.email ? data.errors.email[0] : null
+        } else {
+          // TODO: show red toast
+        }
+      } catch (error) {
+        // TODO: show red toast
+      }
+      this.loading = false
     }
   }
 }

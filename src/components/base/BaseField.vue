@@ -19,20 +19,19 @@
       <IconAlert v-else-if="!!error" class="absolute right-4 top-5 group-focus-within:hidden" />
     </div>
     <p class="mt-1.5 text-red-error text-sm">
-      <ErrorMessage :name="name" />
+      {{ error }}
     </p>
   </div>
 </template>
 
 <script>
-import { Field, ErrorMessage } from 'vee-validate'
+import { Field } from 'vee-validate'
 import IconAlert from '@/components/icons/IconAlert.vue'
 import IconEye from '@/components/icons/IconEye.vue'
 
 export default {
   components: {
     Field,
-    ErrorMessage,
     IconAlert,
     IconEye
   },
