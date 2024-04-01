@@ -9,7 +9,7 @@
       <h1 class="font-extrabold text-3xl text-center desktop:text-left">Create account</h1>
       <p class="text-center text-black-transparent mt-6 desktop:absolute desktop:-bottom-12">
         Already have an account?
-        <a class="text-primary font-semibold">Log in</a>
+        <RouterLink :to="{ name: 'login' }" class="text-primary font-semibold">Log in</RouterLink>
       </p>
       <Form v-slot="{ errors }" class="max-w-107 mt-10 space-y-6" @submit="submitForm">
         <BaseField
@@ -55,6 +55,7 @@
 </template>
 
 <script>
+import { RouterLink } from 'vue-router'
 import { Form } from 'vee-validate'
 import { register } from '@/services/api/auth'
 import LayoutsAuth from '@/layouts/LayoutsAuth.vue'
@@ -65,6 +66,7 @@ import BaseButton from '@/components/base/BaseButton.vue'
 
 export default {
   components: {
+    RouterLink,
     // eslint-disable-next-line vue/no-reserved-component-names
     Form,
     LayoutsAuth,

@@ -16,13 +16,13 @@
           Sign up
         </RouterLink>
       </a>
-      <a
-        href="#"
+      <RouterLink
+        :to="{ name: 'login' }"
         class="hidden desktop:flex items-center gap-1 mx-4 text-sm font-bold text-primary group"
       >
         <span>Log in</span>
         <IconArrowRight class="text-transparent group-hover:text-inherit" />
-      </a>
+      </RouterLink>
       <button
         class="size-10 flex justify-center items-center desktop:hidden"
         @click="menuOpen = true"
