@@ -94,15 +94,23 @@ export default {
       try {
         const { status, data } = await register(values)
         if (status === 201) {
-          // TODO: show green tost - email has been sent
+          this.$store.dispatch('toast/display', {
+            type: 'success',
+            title: 'Registration Successful!',
+            message: 'You need to verify your email before you can log in'
+          })
         } else if (status === 422) {
           this.errorsFromBackend.username = data.errors.username ? data.errors.username[0] : null
           this.errorsFromBackend.email = data.errors.email ? data.errors.email[0] : null
         } else {
-          // TODO: show red toast
+          throw new Error()
         }
       } catch (error) {
-        // TODO: show red toast
+        this.$store.dispatch('toast/display', {
+          type: 'error',
+          title: 'Error Occured',
+          message: 'Something went wrong. Please, try again later'
+        })
       }
       this.loading = false
     }
