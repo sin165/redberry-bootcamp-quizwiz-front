@@ -34,6 +34,11 @@
           <BaseCheckbox name="remember" label="Remember for 30 days" />
           <span class="text-custom-gray-700 text-sm">Forgot password?</span>
         </div>
+        <p v-if="resendButtonVisible">
+          <span class="text-primary font-semibold cursor-pointer" @click="resendVerificationEmail">
+            Resend verification email
+          </span>
+        </p>
         <BaseButton color="black" :loading="loading">Log in</BaseButton>
       </Form>
     </template>
@@ -43,7 +48,7 @@
 <script>
 import { RouterLink } from 'vue-router'
 import { Form } from 'vee-validate'
-import { login, verify } from '@/services/api/auth'
+import { login, verify, resend } from '@/services/api/auth'
 import LayoutsAuth from '@/layouts/LayoutsAuth.vue'
 import IconArtLogin from '@/components/icons/IconArtLogin.vue'
 import BaseField from '@/components/base/BaseField.vue'
@@ -64,7 +69,10 @@ export default {
   data() {
     return {
       hasPreviousRoute: false,
-      loading: false
+      loading: false,
+      resendButtonVisible: false,
+      emailToVerify: null,
+      verifyUrl: null
     }
   },
   beforeRouteEnter(to, from, next) {
@@ -73,9 +81,9 @@ export default {
     })
   },
   mounted() {
-    let verify_url = this.$route.query['verify_url']
-    if (verify_url) {
-      this.verifyEmail(verify_url)
+    let verifyUrl = this.$route.query['verify_url']
+    if (verifyUrl) {
+      this.verifyEmail(verifyUrl)
     }
   },
   methods: {
@@ -92,9 +100,11 @@ export default {
           this.$store.dispatch('toast/display', {
             type: 'warning',
             title: 'Token Expired',
-            message: 'Your email verification token has expired'
+            message:
+              'Your email verification token has expired. Click the resend button below to send another one'
           })
-          // TODO: add resend link
+          this.verifyUrl = url
+          this.resendButtonVisible = true
         }
       } catch (error) {
         this.$store.dispatch('toast/display', {
@@ -104,7 +114,26 @@ export default {
         })
       }
     },
+    async resendVerificationEmail() {
+      try {
+        const { status } = await resend(this.verifyUrl, this.emailToVerify)
+        if (status === 200) {
+          this.$store.dispatch('toast/display', {
+            type: 'success',
+            title: 'Link Sent!',
+            message: 'Verification link sent. Check your email'
+          })
+        }
+      } catch (error) {
+        this.$store.dispatch('toast/display', {
+          type: 'error',
+          title: 'Error Occured',
+          message: 'Could not resend verification email. Please, try again later'
+        })
+      }
+    },
     async submitForm(values) {
+      this.resendButtonVisible = false
       this.loading = true
       try {
         const { status, data } = await login(values)
@@ -113,6 +142,14 @@ export default {
           // TODO: store user and redirect
         } else if (status === 401) {
           // TODO: display error - Invalid credentials
+        } else if (status === 403) {
+          this.$store.dispatch('toast/display', {
+            type: 'warning',
+            title: 'Email Not Verified',
+            message: 'You need to verify your email before you can log in'
+          })
+          this.emailToVerify = data.email
+          this.resendButtonVisible = true
         } else {
           throw new Error()
         }

@@ -11,3 +11,13 @@ export const login = async (values) => {
 export const verify = async (url) => {
   return await fetchData(url)
 }
+
+export const resend = async (verifyUrl, email) => {
+  const values = {}
+  if (email) {
+    values.email = email
+  } else {
+    values.id = verifyUrl.match(/verify\/(\d+)/)[1]
+  }
+  return await fetchData('/email/verification-notification', 'POST', values, true)
+}
