@@ -22,7 +22,11 @@ export const fetchData = async (path, method = 'GET', values = null, withXSRF = 
     options.headers['X-XSRF-TOKEN'] = getCookie('XSRF-TOKEN')
   }
 
-  const response = await fetch(backendUrl + '/api' + path, options)
+  if (!path.startsWith('http')) {
+    path = backendUrl + '/api' + path
+  }
+
+  const response = await fetch(path, options)
   const data = await response.json()
   return {
     status: response.status,

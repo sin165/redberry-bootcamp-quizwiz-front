@@ -43,7 +43,7 @@
 <script>
 import { RouterLink } from 'vue-router'
 import { Form } from 'vee-validate'
-import { login } from '@/services/api/auth'
+import { login, verify } from '@/services/api/auth'
 import LayoutsAuth from '@/layouts/LayoutsAuth.vue'
 import IconArtLogin from '@/components/icons/IconArtLogin.vue'
 import BaseField from '@/components/base/BaseField.vue'
@@ -72,7 +72,38 @@ export default {
       vm.hasPreviousRoute = !!from.name
     })
   },
+  mounted() {
+    let verify_url = this.$route.query['verify_url']
+    if (verify_url) {
+      this.verifyEmail(verify_url)
+    }
+  },
   methods: {
+    async verifyEmail(url) {
+      try {
+        const { status, data } = await verify(url)
+        if (status === 200) {
+          this.$store.dispatch('toast/display', {
+            type: 'success',
+            title: 'Email Verified',
+            message: data.message + '. You can log into your account'
+          })
+        } else if (status === 403) {
+          this.$store.dispatch('toast/display', {
+            type: 'warning',
+            title: 'Token Expired',
+            message: 'Your email verification token has expired'
+          })
+          // TODO: add resend link
+        }
+      } catch (error) {
+        this.$store.dispatch('toast/display', {
+          type: 'error',
+          title: 'Error Occured',
+          message: 'Something went wrong. Please, try again later'
+        })
+      }
+    },
     async submitForm(values) {
       this.loading = true
       try {

@@ -7,3 +7,7 @@ export const register = async (values) => {
 export const login = async (values) => {
   return await fetchData('/login', 'POST', values, true)
 }
+
+export const verify = async (url) => {
+  return await fetchData(url)
+}
