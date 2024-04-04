@@ -18,12 +18,12 @@
       >
         Sign up
       </RouterLink>
-      <a
-        href="#"
+      <RouterLink
+        :to="{ name: 'login' }"
         class="block mt-5 bg-custom-gray-70 text-primary text-sm font-bold text-center p-3.5 rounded"
       >
         Log in
-      </a>
+      </RouterLink>
     </div>
   </div>
 </template>
