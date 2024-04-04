@@ -21,3 +21,7 @@ export const resend = async (verifyUrl, email) => {
   }
   return await fetchData('/email/verification-notification', 'POST', values, true)
 }
+
+export const getUser = async () => {
+  return await fetchData('/user')
+}

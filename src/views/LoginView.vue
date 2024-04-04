@@ -138,8 +138,8 @@ export default {
       try {
         const { status, data } = await login(values)
         if (status === 200) {
-          console.log(data)
-          // TODO: store user and redirect
+          this.$store.dispatch('user/set', data.user)
+          this.$router.push({ name: 'home' })
         } else if (status === 401) {
           // TODO: display error - Invalid credentials
         } else if (status === 403) {
@@ -154,7 +154,6 @@ export default {
           throw new Error()
         }
       } catch (error) {
-        console.log(error)
         this.$store.dispatch('toast/display', {
           type: 'error',
           title: 'Error Occured',
