@@ -43,7 +43,7 @@
             <p class="text-sm font-semibold text-custom-gray-900">{{ username }}</p>
             <p class="text-sm text-custom-gray-600">{{ email }}</p>
           </div>
-          <IconLogout class="cursor-pointer" />
+          <IconLogout class="cursor-pointer" @click="logOut" />
         </div>
       </div>
       <button
@@ -54,11 +54,18 @@
       </button>
     </div>
   </header>
-  <TheHeaderMenu v-if="menuOpen" :username="username" :email="email" @close="menuOpen = false" />
+  <TheHeaderMenu
+    v-if="menuOpen"
+    :username="username"
+    :email="email"
+    @close="menuOpen = false"
+    @logout="logOut"
+  />
 </template>
 
 <script>
 import { RouterLink } from 'vue-router'
+import { logout } from '@/services/api/auth'
 import IconLogo from '@/components/icons/IconLogo.vue'
 import IconMenu from '@/components/icons/IconMenu.vue'
 import IconArrowRight from '@/components/icons/IconArrowRight.vue'
@@ -87,6 +94,14 @@ export default {
     },
     email() {
       return this.$store.getters['user/email']
+    }
+  },
+  methods: {
+    async logOut() {
+      const { status } = await logout()
+      if (status === 200) {
+        this.$store.dispatch('user/unset')
+      }
     }
   }
 }

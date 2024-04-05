@@ -43,6 +43,7 @@
       <button
         v-if="username"
         class="block mt-5 bg-custom-gray-70 text-primary text-sm font-bold text-center p-3.5 rounded w-full"
+        @click="$emit('logout')"
       >
         Log out
       </button>
@@ -73,6 +74,6 @@ export default {
       required: false
     }
   },
-  emits: ['close']
+  emits: ['close', 'logout']
 }
 </script>

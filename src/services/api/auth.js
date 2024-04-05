@@ -25,3 +25,7 @@ export const resend = async (verifyUrl, email) => {
 export const getUser = async () => {
   return await fetchData('/user')
 }
+
+export const logout = async () => {
+  return await fetchData('/logout', 'POST', null, true)
+}

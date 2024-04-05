@@ -10,11 +10,18 @@ export default {
     setUser(state, payload) {
       state.username = payload.username
       state.email = payload.email
+    },
+    unsetUser(state) {
+      state.username = null
+      state.email = null
     }
   },
   actions: {
     set(context, payload) {
       context.commit('setUser', payload)
+    },
+    unset(context) {
+      context.commit('unsetUser')
     }
   },
   getters: {
