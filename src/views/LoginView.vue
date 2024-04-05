@@ -20,7 +20,8 @@
           type="email"
           placeholder="Your email"
           rules="required|email"
-          :error="errors.email"
+          :error="errorFromBackend ?? errors.email"
+          @focusout="errorFromBackend = null"
         />
         <BaseField
           name="password"
@@ -70,6 +71,7 @@ export default {
     return {
       hasPreviousRoute: false,
       loading: false,
+      errorFromBackend: null,
       resendButtonVisible: false,
       emailToVerify: null,
       verifyUrl: null
@@ -141,7 +143,7 @@ export default {
           this.$store.dispatch('user/set', data.user)
           this.$router.push({ name: 'home' })
         } else if (status === 401) {
-          // TODO: display error - Invalid credentials
+          this.errorFromBackend = 'Invalid credentials'
         } else if (status === 403) {
           this.$store.dispatch('toast/display', {
             type: 'warning',
