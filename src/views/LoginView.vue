@@ -20,7 +20,8 @@
           type="email"
           placeholder="Your email"
           rules="required|email"
-          :error="errors.email"
+          :error="errorFromBackend ?? errors.email"
+          @focusout="errorFromBackend = null"
         />
         <BaseField
           name="password"
@@ -70,6 +71,7 @@ export default {
     return {
       hasPreviousRoute: false,
       loading: false,
+      errorFromBackend: null,
       resendButtonVisible: false,
       emailToVerify: null,
       verifyUrl: null
@@ -138,10 +140,10 @@ export default {
       try {
         const { status, data } = await login(values)
         if (status === 200) {
-          console.log(data)
-          // TODO: store user and redirect
+          this.$store.dispatch('user/set', data.user)
+          this.$router.push({ name: 'home' })
         } else if (status === 401) {
-          // TODO: display error - Invalid credentials
+          this.errorFromBackend = 'Invalid credentials'
         } else if (status === 403) {
           this.$store.dispatch('toast/display', {
             type: 'warning',
@@ -154,7 +156,6 @@ export default {
           throw new Error()
         }
       } catch (error) {
-        console.log(error)
         this.$store.dispatch('toast/display', {
           type: 'error',
           title: 'Error Occured',
