@@ -29,3 +29,11 @@ export const getUser = async () => {
 export const logout = async () => {
   return await fetchData('/logout', 'POST', null, true)
 }
+
+export const sendPasswordResetLink = async (values) => {
+  return await fetchData('/forgot-password', 'POST', values, true)
+}
+
+export const resetPassword = async (values) => {
+  return await fetchData('/reset-password', 'POST', values, true)
+}

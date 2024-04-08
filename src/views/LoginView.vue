@@ -33,7 +33,9 @@
         />
         <div class="pt-2 pb-3.5 flex justify-between items-center">
           <BaseCheckbox name="remember" label="Remember for 30 days" />
-          <span class="text-custom-gray-700 text-sm">Forgot password?</span>
+          <RouterLink :to="{ name: 'reset-password' }" class="text-custom-gray-700 text-sm">
+            Forgot password?
+          </RouterLink>
         </div>
         <p v-if="resendButtonVisible">
           <span class="text-primary font-semibold cursor-pointer" @click="resendVerificationEmail">
