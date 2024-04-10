@@ -47,7 +47,7 @@ export default {
             title: 'Email Sent',
             message: data.message
           })
-        } else if (status === 400) {
+        } else if (status === 400 || status === 422) {
           this.errorFromBackend = data.message
         } else {
           throw new Error()
