@@ -4,6 +4,7 @@ import RegisterView from '@/views/RegisterView.vue'
 import LoginView from '@/views/LoginView.vue'
 import PasswordResetView from '@/views/PasswordResetView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
+import QuizListingView from '@/views/QuizListingView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -27,6 +28,11 @@ const router = createRouter({
       path: '/reset-password',
       name: 'reset-password',
       component: PasswordResetView
+    },
+    {
+      path: '/quizzes',
+      name: 'quiz-listing',
+      component: QuizListingView
     },
     {
       path: '/:catchAll(.*)',

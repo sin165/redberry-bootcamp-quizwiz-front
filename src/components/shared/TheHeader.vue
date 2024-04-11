@@ -6,6 +6,9 @@
       <RouterLink :to="{ name: 'home' }">
         <IconLogo />
       </RouterLink>
+      <RouterLink :to="{ name: 'quiz-listing' }" class="text-custom-gray-600 font-semibold text-sm">
+        Quizzes
+      </RouterLink>
     </div>
     <div class="flex justify-end items-center gap-4">
       <a href="#" class="hidden desktop:flex group">

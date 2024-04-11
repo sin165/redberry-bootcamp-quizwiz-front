@@ -52,6 +52,7 @@ export default {
           750: '#242C32',
           800: '#1D2939',
           900: '#101828',
+          '500-light': '#66708599',
           '300-transparent': '#D0D5DD66',
           '500-transparent': '#66666640',
           '900-transparent': '#1018284D'
