@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import IconSettingsSlider from '../icons/IconSettingsSlider.vue'
+import IconSettingsSlider from '@/components/icons/IconSettingsSlider.vue'
 
 export default {
   components: {
