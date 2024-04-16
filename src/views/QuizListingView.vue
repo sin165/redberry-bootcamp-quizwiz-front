@@ -14,6 +14,7 @@
 import LayoutsMain from '@/layouts/LayoutsMain.vue'
 import QuizListingFilter from '@/components/quiz-listing/QuizListingFilter.vue'
 import QuizListingCategoriesBar from '@/components/quiz-listing/QuizListingCategoriesBar.vue'
+import { getCategories } from '@/services/api/quiz'
 
 export default {
   components: {
@@ -24,6 +25,17 @@ export default {
   computed: {
     categories() {
       return this.$store.getters['quiz/categories']
+    }
+  },
+  created() {
+    this.fetchCategories()
+  },
+  methods: {
+    async fetchCategories() {
+      const { status, data } = await getCategories()
+      if (status === 200) {
+        this.$store.dispatch('quiz/setCategories', data)
+      }
     }
   }
 }
