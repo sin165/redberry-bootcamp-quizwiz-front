@@ -41,21 +41,27 @@ export default {
   },
   data() {
     return {
-      loading: false,
-      quizzes: [],
-      nextPage: null
+      loading: false
     }
   },
   computed: {
     categories() {
       return this.$store.getters['quiz/categories']
+    },
+    quizzes() {
+      return this.$store.getters['quiz/quizzes']
+    },
+    nextPage() {
+      return this.$store.getters['quiz/nextPage']
     }
   },
   created() {
     if (!this.$store.getters['quiz/categories'].length) {
       this.fetchCategories()
     }
-    this.fetchQuizzes()
+    if (!this.$store.getters['quiz/quizzes'].length) {
+      this.fetchQuizzes()
+    }
   },
   methods: {
     async fetchCategories() {
@@ -67,16 +73,16 @@ export default {
     async fetchQuizzes() {
       const { status, data } = await getQuizzes()
       if (status === 200) {
-        this.quizzes = data.data
-        this.nextPage = data.links.next
+        this.$store.dispatch('quiz/setQuizzes', data.data)
+        this.$store.dispatch('quiz/setNextPage', data.links.next)
       }
     },
     async loadMoreQuizzes() {
       this.loading = true
       const { status, data } = await getQuizzes(this.nextPage)
       if (status === 200) {
-        this.quizzes = this.quizzes.concat(data.data)
-        this.nextPage = data.links.next
+        this.$store.dispatch('quiz/addQuizzes', data.data)
+        this.$store.dispatch('quiz/setNextPage', data.links.next)
       }
       this.loading = false
     }
