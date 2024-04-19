@@ -5,7 +5,20 @@
         <QuizListingCategoriesBar :categories="categories" />
         <QuizListingFilter />
       </div>
-      <main></main>
+      <main class="mt-12 mb-16">
+        <div class="grid grid-cols-1 justify-items-center gap-12 desktop:grid-cols-3 desktop:gap-8">
+          <QuizCard v-for="quiz in quizzes" :key="quiz.id" :quiz="quiz" />
+        </div>
+        <BaseButton
+          v-if="nextPage"
+          class="mx-auto w-max mt-10"
+          color="pale"
+          :loading="loading"
+          @click="loadMoreQuizzes"
+        >
+          Load more
+        </BaseButton>
+      </main>
     </div>
   </LayoutsMain>
 </template>
@@ -14,13 +27,24 @@
 import LayoutsMain from '@/layouts/LayoutsMain.vue'
 import QuizListingFilter from '@/components/quiz-listing/QuizListingFilter.vue'
 import QuizListingCategoriesBar from '@/components/quiz-listing/QuizListingCategoriesBar.vue'
-import { getCategories } from '@/services/api/quiz'
+import QuizCard from '@/components/shared/QuizCard.vue'
+import BaseButton from '@/components/base/BaseButton.vue'
+import { getCategories, getQuizzes } from '@/services/api/quiz'
 
 export default {
   components: {
     LayoutsMain,
     QuizListingFilter,
-    QuizListingCategoriesBar
+    QuizListingCategoriesBar,
+    QuizCard,
+    BaseButton
+  },
+  data() {
+    return {
+      loading: false,
+      quizzes: [],
+      nextPage: null
+    }
   },
   computed: {
     categories() {
@@ -28,7 +52,10 @@ export default {
     }
   },
   created() {
-    this.fetchCategories()
+    if (!this.$store.getters['quiz/categories'].length) {
+      this.fetchCategories()
+    }
+    this.fetchQuizzes()
   },
   methods: {
     async fetchCategories() {
@@ -36,6 +63,22 @@ export default {
       if (status === 200) {
         this.$store.dispatch('quiz/setCategories', data)
       }
+    },
+    async fetchQuizzes() {
+      const { status, data } = await getQuizzes()
+      if (status === 200) {
+        this.quizzes = data.data
+        this.nextPage = data.links.next
+      }
+    },
+    async loadMoreQuizzes() {
+      this.loading = true
+      const { status, data } = await getQuizzes(this.nextPage)
+      if (status === 200) {
+        this.quizzes = this.quizzes.concat(data.data)
+        this.nextPage = data.links.next
+      }
+      this.loading = false
     }
   }
 }
