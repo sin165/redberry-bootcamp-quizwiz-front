@@ -2,12 +2,16 @@ export default {
   namespaced: true,
   state() {
     return {
+      difficulties: [],
       categories: [],
       quizzes: [],
       nextPage: null
     }
   },
   mutations: {
+    setDifficulties(state, payload) {
+      state.difficulties = payload
+    },
     setCategories(state, payload) {
       state.categories = payload
     },
@@ -22,6 +26,9 @@ export default {
     }
   },
   actions: {
+    setDifficulties(context, payload) {
+      context.commit('setDifficulties', payload)
+    },
     setCategories(context, payload) {
       context.commit('setCategories', payload)
     },
@@ -36,6 +43,9 @@ export default {
     }
   },
   getters: {
+    difficulties(state) {
+      return state.difficulties
+    },
     categories(state) {
       return state.categories
     },

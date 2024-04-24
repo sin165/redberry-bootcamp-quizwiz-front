@@ -13,6 +13,7 @@ export default {
         '7.5xl': ['5rem', '3.5rem']
       },
       spacing: {
+        4.5: '1.125rem',
         18: '4.5rem',
         30: '7.5rem',
         43: '10.75rem',
@@ -39,6 +40,7 @@ export default {
         'orange-soft': '#FEF6E7',
         'red-error': '#F04438',
         'red-error-soft': '#FDA29B',
+        'black-faint': '#0000001A',
         'black-transparent': '#000000B2',
         'custom-gray': {
           25: '#FCFCFD',
@@ -56,14 +58,19 @@ export default {
           750: '#242C32',
           800: '#1D2939',
           900: '#101828',
+          '300-light': '#D0D5DD4D',
           '500-light': '#66708599',
+          '500-lighter': '#66708566',
+          '70-transparent': '#F6F6F6B2',
           '300-transparent': '#D0D5DD66',
           '500-transparent': '#66666640',
+          '600-transparent': '#4754674D',
           '900-transparent': '#1018284D'
         }
       },
       boxShadow: {
         solid: '4px 4px 0px 0px #000000',
+        blurred: '0px 16px 54px 0px #0000001F',
         double: '0px 4px 6px -2px #10182808, 0px 12px 16px -4px #10182814',
         heavy: '0px 8px 10px 0px #00000033, 0px 6px 30px 0px #0000001F, 0px 16px 24px 0px #00000024'
       },

@@ -3,7 +3,7 @@
     <div class="mx-4 mt-5 mb-12 desktop:mx-24 desktop:mt-6 desktop:mb-18">
       <div class="flex flex-col gap-4 justify-between desktop:flex-row">
         <QuizListingCategoriesBar :categories="categories" />
-        <QuizListingFilter />
+        <QuizListingFilter @confirm="fetchQuizzes" />
       </div>
       <main class="mt-12 mb-16">
         <div class="grid grid-cols-1 justify-items-center gap-12 desktop:grid-cols-3 desktop:gap-8">
@@ -56,6 +56,7 @@ export default {
     }
   },
   created() {
+    this.$store.dispatch('filter/setFromQuery', this.$route.query)
     if (!this.$store.getters['quiz/categories'].length) {
       this.fetchCategories()
     }
@@ -71,7 +72,8 @@ export default {
       }
     },
     async fetchQuizzes() {
-      const { status, data } = await getQuizzes()
+      let params = this.$store.getters['filter/all']
+      const { status, data } = await getQuizzes(new URLSearchParams(params))
       if (status === 200) {
         this.$store.dispatch('quiz/setQuizzes', data.data)
         this.$store.dispatch('quiz/setNextPage', data.links.next)
@@ -79,7 +81,7 @@ export default {
     },
     async loadMoreQuizzes() {
       this.loading = true
-      const { status, data } = await getQuizzes(this.nextPage)
+      const { status, data } = await getQuizzes(this.nextPage.split('?')[1])
       if (status === 200) {
         this.$store.dispatch('quiz/addQuizzes', data.data)
         this.$store.dispatch('quiz/setNextPage', data.links.next)
