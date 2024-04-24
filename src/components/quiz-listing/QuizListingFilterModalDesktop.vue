@@ -15,7 +15,7 @@
             Confirm
           </button>
           <div class="w-0 h-3.5 border-r border-custom-gray-500-lighter"></div>
-          <button class="w-max text-custom-gray-500">Reset all filters</button>
+          <button class="w-max text-custom-gray-500" @click="reset">Reset all filters</button>
         </div>
         <button class="size-4 shrink-0 self-center">
           <IconClose class="size-full" />
@@ -70,6 +70,11 @@ export default {
   computed: {
     loggedIn() {
       return !!this.$store.getters['user/username']
+    }
+  },
+  methods: {
+    reset() {
+      this.$store.dispatch('filter/reset')
     }
   }
 }

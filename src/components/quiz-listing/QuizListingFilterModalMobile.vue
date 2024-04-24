@@ -7,7 +7,7 @@
         @touchmove.prevent
         @scroll.prevent
       >
-        <button class="w-max font-semibold text-custom-gray-500">Reset</button>
+        <button class="w-max font-semibold text-custom-gray-500" @click="reset">Reset</button>
         <h3 class="font-semibold text-custom-gray-500">FILTERS</h3>
         <button class="size-6 shrink-0 self-center" @click="$emit('close')">
           <IconClose class="size-full" />
@@ -116,6 +116,11 @@ export default {
   computed: {
     loggedIn() {
       return !!this.$store.getters['user/username']
+    }
+  },
+  methods: {
+    reset() {
+      this.$store.dispatch('filter/reset')
     }
   }
 }
