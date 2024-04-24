@@ -66,7 +66,9 @@
       <div
         class="border-custom-gray-300 rounded-xl w-96 p-4"
         :class="{ hidden: selectedTab !== 'sorting' }"
-      ></div>
+      >
+        <QuizListingFilterModalSort />
+      </div>
     </div>
     <div
       class="absolute b-0 l-0 flex items-center gap-2.5 w-full h-24 px-4.5 shadow-heavy z-50"
@@ -93,6 +95,7 @@ import QuizListingFilterModalCompletion from '@/components/quiz-listing/QuizList
 import QuizListingFilterModalDifficulties from '@/components/quiz-listing/QuizListingFilterModalDifficulties.vue'
 import QuizListingFilterModalCategories from '@/components/quiz-listing/QuizListingFilterModalCategories.vue'
 import QuizListingFilterModalSearch from '@/components/quiz-listing/QuizListingFilterModalSearch.vue'
+import QuizListingFilterModalSort from '@/components/quiz-listing/QuizListingFilterModalSort.vue'
 
 export default {
   components: {
@@ -100,7 +103,8 @@ export default {
     QuizListingFilterModalCompletion,
     QuizListingFilterModalDifficulties,
     QuizListingFilterModalCategories,
-    QuizListingFilterModalSearch
+    QuizListingFilterModalSearch,
+    QuizListingFilterModalSort
   },
   emits: ['close', 'confirm'],
   data() {

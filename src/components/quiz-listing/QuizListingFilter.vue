@@ -66,6 +66,7 @@ export default {
       const categories = this.$store.getters['filter/categories'].toString()
       const difficulties = this.$store.getters['filter/difficulties'].toString()
       const status = this.$store.getters['filter/status']
+      const sort = this.$store.getters['filter/sort']
       if (categories) {
         $query['categories'] = categories
       }
@@ -74,6 +75,9 @@ export default {
       }
       if (status) {
         $query['status'] = status
+      }
+      if (sort) {
+        $query['sort'] = sort
       }
       this.$router.push({
         name: 'quiz-listing',

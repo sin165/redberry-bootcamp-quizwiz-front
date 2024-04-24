@@ -33,6 +33,7 @@
       </div>
       <div class="border border-custom-gray-300 rounded-xl w-96 p-4">
         <h4 class="text-sm text-primary font-semibold">Sort by</h4>
+        <QuizListingFilterModalSort />
       </div>
     </div>
   </div>
@@ -45,6 +46,7 @@ import QuizListingFilterModalCompletion from '@/components/quiz-listing/QuizList
 import QuizListingFilterModalDifficulties from '@/components/quiz-listing/QuizListingFilterModalDifficulties.vue'
 import QuizListingFilterModalCategories from '@/components/quiz-listing/QuizListingFilterModalCategories.vue'
 import QuizListingFilterModalSearch from '@/components/quiz-listing/QuizListingFilterModalSearch.vue'
+import QuizListingFilterModalSort from '@/components/quiz-listing/QuizListingFilterModalSort.vue'
 
 export default {
   components: {
@@ -53,7 +55,8 @@ export default {
     QuizListingFilterModalCompletion,
     QuizListingFilterModalDifficulties,
     QuizListingFilterModalCategories,
-    QuizListingFilterModalSearch
+    QuizListingFilterModalSearch,
+    QuizListingFilterModalSort
   },
   emits: ['close', 'confirm'],
   data() {
