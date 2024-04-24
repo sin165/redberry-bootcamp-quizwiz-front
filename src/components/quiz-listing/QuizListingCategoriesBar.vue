@@ -60,8 +60,10 @@ export default {
     }
   },
   mounted() {
-    this.containerWidth = this.$refs.categoriesInner.offsetWidth
-    this.contentWidth = this.$refs.categoriesInner.scrollWidth
+    this.updateWidths()
+  },
+  updated() {
+    this.updateWidths()
   },
   methods: {
     moveLeft() {
@@ -87,6 +89,10 @@ export default {
         top: 0,
         behavior: 'smooth'
       })
+    },
+    updateWidths() {
+      this.containerWidth = this.$refs.categoriesInner.offsetWidth
+      this.contentWidth = this.$refs.categoriesInner.scrollWidth
     }
   }
 }
