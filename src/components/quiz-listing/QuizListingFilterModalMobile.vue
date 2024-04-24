@@ -57,8 +57,8 @@
         class="border-custom-gray-300 rounded-xl w-160 p-4"
         :class="{ hidden: selectedTab !== 'filter' }"
       >
-        <QuizListingFilterModalCompletion />
-        <div class="w-full h-0 border-b border-black-faint mt-5 mb-4"></div>
+        <QuizListingFilterModalCompletion v-if="loggedIn" />
+        <div v-if="loggedIn" class="w-full h-0 border-b border-black-faint mt-5 mb-4"></div>
         <QuizListingFilterModalDifficulties :searchTerm="searchTerm" />
         <div class="w-full h-0 border-b border-black-faint mt-5 mb-4"></div>
         <QuizListingFilterModalCategories :searchTerm="searchTerm" />
@@ -111,6 +111,11 @@ export default {
     return {
       selectedTab: 'filter',
       searchTerm: ''
+    }
+  },
+  computed: {
+    loggedIn() {
+      return !!this.$store.getters['user/username']
     }
   }
 }

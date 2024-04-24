@@ -25,8 +25,11 @@
     <div class="flex items-stretch gap-2.5">
       <div class="border border-custom-gray-300 rounded-xl w-160 p-4">
         <h4 class="block text-sm text-primary font-semibold">Filter by</h4>
-        <QuizListingFilterModalCompletion />
-        <div class="w-full h-0 border-b border-black-faint mt-5 mb-4"></div>
+        <QuizListingFilterModalCompletion v-if="loggedIn" />
+        <div
+          class="w-full h-0 border-black-faint mt-5 mb-4"
+          :class="{ 'border-b': loggedIn }"
+        ></div>
         <QuizListingFilterModalDifficulties :searchTerm="searchTerm" />
         <div class="w-full h-0 border-b border-black-faint mt-5 mb-4"></div>
         <QuizListingFilterModalCategories :searchTerm="searchTerm" />
@@ -62,6 +65,11 @@ export default {
   data() {
     return {
       searchTerm: ''
+    }
+  },
+  computed: {
+    loggedIn() {
+      return !!this.$store.getters['user/username']
     }
   }
 }
