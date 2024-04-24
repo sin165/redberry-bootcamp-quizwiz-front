@@ -2,6 +2,7 @@ export default {
   namespaced: true,
   state() {
     return {
+      changed: false,
       sort: null,
       difficulties: [],
       categories: [],
@@ -9,6 +10,9 @@ export default {
     }
   },
   mutations: {
+    setChanged(state, payload) {
+      state.changed = payload
+    },
     setSort(state, payload) {
       state.sort = payload
     },
@@ -37,8 +41,12 @@ export default {
     }
   },
   actions: {
+    setChanged(context, payload) {
+      context.commit('setChanged', payload)
+    },
     setSort(context, payload) {
       context.commit('setSort', payload)
+      context.commit('setChanged', true)
     },
     toggleDifficulty(context, payload) {
       if (context.state.difficulties.includes(payload)) {
@@ -46,6 +54,7 @@ export default {
       } else {
         context.commit('addDifficulty', payload)
       }
+      context.commit('setChanged', true)
     },
     toggleCategory(context, payload) {
       if (context.state.categories.includes(payload)) {
@@ -53,9 +62,11 @@ export default {
       } else {
         context.commit('addCategory', payload)
       }
+      context.commit('setChanged', true)
     },
     setStatus(context, payload) {
       context.commit('setStatus', payload)
+      context.commit('setChanged', true)
     },
     setFromQuery(context, payload) {
       context.commit('setSort', payload.sort)
@@ -68,9 +79,13 @@ export default {
       context.commit('setDifficulties', [])
       context.commit('setCategories', [])
       context.commit('setStatus', null)
+      context.commit('setChanged', true)
     }
   },
   getters: {
+    changed(state) {
+      return state.changed
+    },
     sort(state) {
       return state.sort
     },
@@ -98,6 +113,9 @@ export default {
         filters.status = state.status
       }
       return filters
+    },
+    empty(state) {
+      return !state.sort && !state.difficulties.length && !state.categories.length && !state.status
     }
   }
 }

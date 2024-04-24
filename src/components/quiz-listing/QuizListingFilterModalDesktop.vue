@@ -11,11 +11,20 @@
         </button>
         <QuizListingFilterModalSearch @changeTerm="(term) => (searchTerm = term)" />
         <div class="flex items-center gap-4">
-          <button class="h-full bg-primary text-white px-6 rounded-0.5xl" @click="$emit('confirm')">
+          <button
+            v-if="changed"
+            class="h-full bg-primary text-white px-6 rounded-0.5xl"
+            @click="$emit('confirm')"
+          >
             Confirm
           </button>
-          <div class="w-0 h-3.5 border-r border-custom-gray-500-lighter"></div>
-          <button class="w-max text-custom-gray-500" @click="reset">Reset all filters</button>
+          <div
+            v-if="changed && !empty"
+            class="w-0 h-3.5 border-r border-custom-gray-500-lighter"
+          ></div>
+          <button v-if="!empty" class="w-max text-custom-gray-500" @click="reset">
+            Reset all filters
+          </button>
         </div>
         <button class="size-4 shrink-0 self-center">
           <IconClose class="size-full" />
@@ -68,6 +77,12 @@ export default {
     }
   },
   computed: {
+    changed() {
+      return this.$store.getters['filter/changed']
+    },
+    empty() {
+      return this.$store.getters['filter/empty']
+    },
     loggedIn() {
       return !!this.$store.getters['user/username']
     }

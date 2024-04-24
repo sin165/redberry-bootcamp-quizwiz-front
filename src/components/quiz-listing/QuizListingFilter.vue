@@ -85,6 +85,7 @@ export default {
       })
       this.$emit('confirm')
       this.open = false
+      this.$store.dispatch('filter/setChanged', false)
     }
   }
 }

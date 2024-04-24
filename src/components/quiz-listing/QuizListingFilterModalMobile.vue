@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed top-0 left-0 w-full h-full bg-white z-50 pb-24">
+  <div class="fixed top-0 left-0 w-full h-full bg-white z-50" :class="{ 'pb-24': changed }">
     <div class="h-64">
       <div
         class="flex justify-between items-center h-18 gap-4 p-4 border-b border-custom-gray-300 bg-custom-gray-70-transparent"
@@ -71,6 +71,7 @@
       </div>
     </div>
     <div
+      v-if="changed"
       class="absolute b-0 l-0 flex items-center gap-2.5 w-full h-24 px-4.5 shadow-heavy z-50"
       @wheel.prevent
       @touchmove.prevent
@@ -114,6 +115,9 @@ export default {
     }
   },
   computed: {
+    changed() {
+      return this.$store.getters['filter/changed']
+    },
     loggedIn() {
       return !!this.$store.getters['user/username']
     }
