@@ -26,7 +26,7 @@
             Reset all filters
           </button>
         </div>
-        <button class="size-4 shrink-0 self-center">
+        <button class="size-4 shrink-0 self-center" @click="$emit('close')">
           <IconClose class="size-full" />
         </button>
       </div>
