@@ -10,6 +10,7 @@ export default {
         raleway: ['Raleway', 'sans-serif']
       },
       fontSize: {
+        xxs: ['0.625rem', '0.75rem'],
         '7.5xl': ['5rem', '3.5rem']
       },
       spacing: {

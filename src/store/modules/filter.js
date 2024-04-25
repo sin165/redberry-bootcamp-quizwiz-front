@@ -3,6 +3,7 @@ export default {
   state() {
     return {
       changed: false,
+      numberOfChanges: 0,
       sort: null,
       difficulties: [],
       categories: [],
@@ -12,6 +13,14 @@ export default {
   mutations: {
     setChanged(state, payload) {
       state.changed = payload
+    },
+    updateNumberOfChanges(state) {
+      let count = 0
+      if (state.sort) count++
+      if (state.status) count++
+      count += state.difficulties.length
+      count += state.categories.length
+      state.numberOfChanges = count
     },
     setSort(state, payload) {
       state.sort = payload
@@ -44,6 +53,9 @@ export default {
     setChanged(context, payload) {
       context.commit('setChanged', payload)
     },
+    updateNumberOfChanges(context) {
+      context.commit('updateNumberOfChanges')
+    },
     setSort(context, payload) {
       context.commit('setSort', payload)
       context.commit('setChanged', true)
@@ -73,6 +85,7 @@ export default {
       context.commit('setDifficulties', payload.difficulties?.split(',').map(Number) ?? [])
       context.commit('setCategories', payload.categories?.split(',').map(Number) ?? [])
       context.commit('setStatus', payload.status)
+      context.commit('updateNumberOfChanges')
     },
     reset(context) {
       context.commit('setSort', null)
@@ -113,6 +126,9 @@ export default {
         filters.status = state.status
       }
       return filters
+    },
+    numberOfChanges(state) {
+      return state.numberOfChanges
     },
     empty(state) {
       return !state.sort && !state.difficulties.length && !state.categories.length && !state.status

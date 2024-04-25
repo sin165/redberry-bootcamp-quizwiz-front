@@ -1,11 +1,21 @@
 <template>
   <div class="relative">
     <button
-      class="border px-3.5 py-2 rounded-0.5xl text-custom-gray-500 border-custom-gray-500-light flex items-center gap-2"
+      class="relative px-3.5 py-2 rounded-0.5xl flex items-center gap-2 -translate-y-px"
+      :class="{
+        'border-black border-2 text-black': numberOfChanges,
+        'border border-custom-gray-500-light m-px text-custom-gray-500': !numberOfChanges
+      }"
       @click="open = !open"
     >
       <IconSettingsSlider />
       Filter
+      <span
+        v-if="numberOfChanges"
+        class="flex justify-center items-center bg-black rounded-full absolute size-5 -top-2 -right-1.5 overflow-visible border-2 border-white box-content text-xxs text-white font-bold"
+      >
+        {{ numberOfChanges }}
+      </span>
     </button>
     <QuizListingFilterModalMobile
       v-if="isMobile && open"
@@ -37,6 +47,11 @@ export default {
     return {
       open: false,
       isMobile: false
+    }
+  },
+  computed: {
+    numberOfChanges() {
+      return this.$store.getters['filter/numberOfChanges']
     }
   },
   created() {
@@ -86,6 +101,7 @@ export default {
       this.$emit('confirm')
       this.open = false
       this.$store.dispatch('filter/setChanged', false)
+      this.$store.dispatch('filter/updateNumberOfChanges')
     }
   }
 }
