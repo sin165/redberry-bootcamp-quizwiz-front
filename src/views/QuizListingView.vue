@@ -73,7 +73,7 @@ export default {
     },
     async fetchQuizzes() {
       let params = this.$store.getters['filter/all']
-      const { status, data } = await getQuizzes(new URLSearchParams(params))
+      const { status, data } = await getQuizzes(params)
       if (status === 200) {
         this.$store.dispatch('quiz/setQuizzes', data.data)
         this.$store.dispatch('quiz/setNextPage', data.links.next)

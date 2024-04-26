@@ -9,9 +9,5 @@ export const getDifficulties = async () => {
 }
 
 export const getQuizzes = async (params) => {
-  let url = '/quizzes'
-  if (params) {
-    url += '?' + params
-  }
-  return await fetchData(url, 'GET', null, true)
+  return await fetchData('/quizzes', 'GET', null, true, params)
 }
