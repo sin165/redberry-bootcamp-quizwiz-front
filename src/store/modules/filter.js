@@ -7,6 +7,7 @@ export default {
       sort: null,
       difficulties: [],
       categories: [],
+      currentCategories: [],
       status: null
     }
   },
@@ -21,6 +22,9 @@ export default {
       count += state.difficulties.length
       count += state.categories.length
       state.numberOfChanges = count
+    },
+    updateCurrentCategories(state) {
+      state.currentCategories = [...state.categories]
     },
     setSort(state, payload) {
       state.sort = payload
@@ -56,6 +60,9 @@ export default {
     updateNumberOfChanges(context) {
       context.commit('updateNumberOfChanges')
     },
+    updateCurrentCategories(context) {
+      context.commit('updateCurrentCategories')
+    },
     setSort(context, payload) {
       context.commit('setSort', payload)
       context.commit('setChanged', true)
@@ -86,6 +93,7 @@ export default {
       context.commit('setCategories', payload.categories?.split(',').map(Number) ?? [])
       context.commit('setStatus', payload.status)
       context.commit('updateNumberOfChanges')
+      context.commit('updateCurrentCategories')
     },
     reset(context) {
       context.commit('setSort', null)
@@ -129,6 +137,9 @@ export default {
     },
     numberOfChanges(state) {
       return state.numberOfChanges
+    },
+    currentCategories(state) {
+      return state.currentCategories
     },
     empty(state) {
       return !state.sort && !state.difficulties.length && !state.categories.length && !state.status

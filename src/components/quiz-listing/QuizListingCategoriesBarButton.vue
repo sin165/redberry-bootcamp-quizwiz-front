@@ -5,6 +5,7 @@
       'border-black text-black': selected,
       'border-transparent text-custom-gray-500': !selected
     }"
+    @click="handleClick"
   >
     {{ name }}
   </button>
@@ -17,9 +18,25 @@ export default {
       type: String,
       required: true
     },
+    id: {
+      type: Number,
+      required: false
+    },
     selected: {
       type: Boolean,
       default: false
+    }
+  },
+  emits: ['confirm'],
+  methods: {
+    handleClick() {
+      if (this.id) {
+        this.$store.dispatch('filter/setFromQuery', this.$route.query)
+        this.$store.dispatch('filter/toggleCategory', this.id)
+      } else {
+        this.$store.dispatch('filter/reset')
+      }
+      this.$emit('confirm')
     }
   }
 }

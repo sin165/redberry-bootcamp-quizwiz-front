@@ -2,8 +2,8 @@
   <LayoutsMain>
     <div class="mx-4 mt-5 mb-12 desktop:mx-24 desktop:mt-6 desktop:mb-18">
       <div class="flex flex-col gap-4 justify-between desktop:flex-row">
-        <QuizListingCategoriesBar :categories="categories" />
-        <QuizListingFilter @confirm="fetchQuizzes" />
+        <QuizListingCategoriesBar :categories="categories" @confirm="confirm" />
+        <QuizListingFilter @confirm="confirm" />
       </div>
       <main class="mt-12 mb-16">
         <div class="grid grid-cols-1 justify-items-center gap-12 desktop:grid-cols-3 desktop:gap-8">
@@ -87,6 +87,33 @@ export default {
         this.$store.dispatch('quiz/setNextPage', data.links.next)
       }
       this.loading = false
+    },
+    async confirm() {
+      const $query = []
+      const categories = this.$store.getters['filter/categories'].toString()
+      const difficulties = this.$store.getters['filter/difficulties'].toString()
+      const status = this.$store.getters['filter/status']
+      const sort = this.$store.getters['filter/sort']
+      if (categories) {
+        $query['categories'] = categories
+      }
+      if (difficulties) {
+        $query['difficulties'] = difficulties
+      }
+      if (status) {
+        $query['status'] = status
+      }
+      if (sort) {
+        $query['sort'] = sort
+      }
+      this.$router.push({
+        name: 'quiz-listing',
+        query: $query
+      })
+      this.fetchQuizzes()
+      this.$store.dispatch('filter/setChanged', false)
+      this.$store.dispatch('filter/updateNumberOfChanges')
+      this.$store.dispatch('filter/updateCurrentCategories')
     }
   }
 }
