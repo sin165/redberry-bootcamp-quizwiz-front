@@ -4,6 +4,10 @@ export const getCategories = async () => {
   return await fetchData('/categories')
 }
 
-export const getQuizzes = async (url = '/quizzes') => {
-  return await fetchData(url, 'GET', null, true)
+export const getDifficulties = async () => {
+  return await fetchData('/difficulties')
+}
+
+export const getQuizzes = async (params) => {
+  return await fetchData('/quizzes', 'GET', null, true, params)
 }

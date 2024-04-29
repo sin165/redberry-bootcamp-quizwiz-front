@@ -1,7 +1,13 @@
 import { getCookie } from '@/services/getCookie'
 const backendUrl = import.meta.env.VITE_BACKEND_URL
 
-export const fetchData = async (path, method = 'GET', values = null, withXSRF = false) => {
+export const fetchData = async (
+  path,
+  method = 'GET',
+  values = null,
+  withXSRF = false,
+  params = null
+) => {
   const options = {
     method: method,
     credentials: 'include',
@@ -26,7 +32,10 @@ export const fetchData = async (path, method = 'GET', values = null, withXSRF = 
     path = backendUrl + '/api' + path
   }
 
-  const response = await fetch(path, options)
+  let url = new URL(path)
+  url.search = new URLSearchParams(params)
+
+  const response = await fetch(url, options)
   const data = await response.json()
   return {
     status: response.status,

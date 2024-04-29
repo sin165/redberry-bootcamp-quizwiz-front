@@ -12,11 +12,18 @@
     ref="categoriesOuter"
   >
     <div class="categories flex gap-4" ref="categoriesInner">
-      <QuizListingCategoriesBarButton name="All Quizzes" :selected="true" />
+      <QuizListingCategoriesBarButton
+        name="All Quizzes"
+        :selected="!currentCategories.length"
+        @confirm="$emit('confirm')"
+      />
       <QuizListingCategoriesBarButton
         v-for="category in categories"
         :key="category.id"
         :name="category.name"
+        :id="category.id"
+        :selected="currentCategories.includes(category.id)"
+        @confirm="$emit('confirm')"
       />
     </div>
   </div>
@@ -47,6 +54,7 @@ export default {
       required: true
     }
   },
+  emits: ['confirm'],
   data() {
     return {
       containerWidth: 0,
@@ -55,6 +63,9 @@ export default {
     }
   },
   computed: {
+    currentCategories() {
+      return this.$store.getters['filter/currentCategories']
+    },
     maxOffset() {
       return this.contentWidth - this.containerWidth
     }

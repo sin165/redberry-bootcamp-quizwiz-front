@@ -20,7 +20,7 @@
         <IconNotCompleted />
         <div>
           <h4 class="font-semibold text-custom-gray-900">Not completed</h4>
-          <p class="text-custom-gray-600 opacity-30">Date,Time</p>
+          <p class="text-custom-gray-600-transparent">Date,Time</p>
         </div>
       </div>
       <div>
@@ -28,7 +28,7 @@
         <p v-if="quiz.auth_user_result" class="text-custom-gray-600">
           {{ quiz.auth_user_result.time }}
         </p>
-        <p v-else class="text-custom-gray-600 opacity-30">N/A</p>
+        <p v-else class="text-custom-gray-600-transparent">N/A</p>
       </div>
       <div>
         <h4 class="font-semibold text-custom-gray-900">Total users</h4>
@@ -54,7 +54,9 @@
         <IconPoints />
         <div>
           <h4 class="font-semibold text-custom-gray-900">Points</h4>
-          <p class="text-custom-gray-600">{{ quiz.auth_user_result.points }}</p>
+          <p class="text-custom-gray-600">
+            {{ quiz.auth_user_result.points }}/{{ quiz.max_points }}
+          </p>
         </div>
       </div>
     </div>
