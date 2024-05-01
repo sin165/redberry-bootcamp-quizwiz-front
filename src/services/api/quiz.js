@@ -11,3 +11,7 @@ export const getDifficulties = async () => {
 export const getQuizzes = async (params) => {
   return await fetchData('/quizzes', 'GET', null, true, params)
 }
+
+export const getQuiz = async (id) => {
+  return await fetchData('/quizzes/' + id, 'GET', null, true)
+}

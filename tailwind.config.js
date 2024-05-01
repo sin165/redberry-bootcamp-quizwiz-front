@@ -11,6 +11,7 @@ export default {
       },
       fontSize: {
         xxs: ['0.625rem', '0.75rem'],
+        '4.5xl': ['2.5rem', '3rem'],
         '7.5xl': ['5rem', '3.5rem']
       },
       spacing: {
@@ -46,6 +47,7 @@ export default {
         'custom-gray': {
           25: '#FCFCFD',
           50: '#F9FAFB',
+          60: '#F8F8F9',
           70: '#F6F6F7',
           100: '#F2F4F7',
           200: '#EAECF0',
