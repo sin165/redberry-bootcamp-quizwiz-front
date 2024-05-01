@@ -1,13 +1,27 @@
 <template>
-  <article class="shadow-double w-98 min-h-128 p-6 pb-8">
-    <div class="w-87 min-h-60 mb-8"></div>
-    <ul class="flex items-center mb-3">
-      <li v-for="(category, index) in quiz.categories" :key="category.id" class="flex items-center">
+  <article
+    class="w-98 min-h-128 p-6 pb-8 rounded-lg"
+    :class="{ 'bg-custom-gray-60 border border-custom-gray-300': withBg, 'shadow-double': !withBg }"
+  >
+    <RouterLink :to="{ name: 'quiz-inner', params: { id: quiz.id } }" class="block w-87 h-60 mb-8">
+      <img
+        v-if="quiz.picture"
+        :src="quiz.picture"
+        alt="quiz picture"
+        class="size-full object-cover rounded-lg"
+      />
+    </RouterLink>
+    <ul class="flex items-center flex-wrap mb-3">
+      <template v-for="(category, index) in quiz.categories" :key="category.id">
         <span v-if="index > 0" class="size-1 bg-custom-gray-300 rounded-full mx-3"></span>
-        <a href="#" class="text-sm text-primary font-semibold">{{ category.name }}</a>
-      </li>
+        <li class="text-sm text-primary font-semibold">{{ category.name }}</li>
+      </template>
     </ul>
-    <h3 class="text-2xl font-semibold text-custom-gray-900 mb-5">{{ quiz.title }}</h3>
+    <h3 class="text-2xl font-semibold text-custom-gray-900 mb-5">
+      <RouterLink :to="{ name: 'quiz-inner', params: { id: quiz.id } }">
+        {{ quiz.title }}
+      </RouterLink>
+    </h3>
     <div class="flex gap-5 text-sm">
       <div v-if="quiz.auth_user_result" class="flex gap-3">
         <IconCompleted />
@@ -64,6 +78,7 @@
 </template>
 
 <script>
+import { RouterLink } from 'vue-router'
 import IconCompleted from '@/components/icons/IconCompleted.vue'
 import IconNotCompleted from '@/components/icons/IconNotCompleted.vue'
 import IconDifficulty from '@/components/icons/IconDifficulty.vue'
@@ -71,6 +86,7 @@ import IconPoints from '@/components/icons/IconPoints.vue'
 
 export default {
   components: {
+    RouterLink,
     IconCompleted,
     IconNotCompleted,
     IconDifficulty,
@@ -80,6 +96,10 @@ export default {
     quiz: {
       type: Object,
       required: true
+    },
+    withBg: {
+      type: Boolean,
+      default: false
     }
   }
 }
