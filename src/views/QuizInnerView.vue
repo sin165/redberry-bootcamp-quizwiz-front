@@ -37,6 +37,14 @@ export default {
       similarQuizzes: null
     }
   },
+  watch: {
+    $route() {
+      this.quiz = null
+      this.similarQuizzes = null
+      this.fetchQuiz()
+      window.scrollTo(0, 0)
+    }
+  },
   created() {
     this.fetchQuiz()
   },
