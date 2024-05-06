@@ -12,6 +12,9 @@ export default {
     unselectAnswer(state, payload) {
       let index = state.answers.indexOf(payload)
       state.answers.splice(index, 1)
+    },
+    clearAnswers(state) {
+      state.answers = []
     }
   },
   actions: {
@@ -20,6 +23,9 @@ export default {
     },
     unselectAnswer(context, payload) {
       context.commit('unselectAnswer', payload)
+    },
+    clearAnswers(context) {
+      context.commit('clearAnswers')
     }
   },
   getters: {

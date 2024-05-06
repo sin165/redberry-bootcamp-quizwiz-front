@@ -15,3 +15,7 @@ export const getQuizzes = async (params) => {
 export const getQuiz = async (id) => {
   return await fetchData('/quizzes/' + id, 'GET', null, true)
 }
+
+export const submitAnswers = async (quizId, answers, time) => {
+  return await fetchData(`/quizzes/${quizId}/result`, 'POST', { answers, time }, true)
+}

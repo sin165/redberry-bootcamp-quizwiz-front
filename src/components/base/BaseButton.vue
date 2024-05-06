@@ -9,13 +9,13 @@
       'text-white': color !== 'pale',
       'text-primary': color === 'pale',
       'pl-3.5': loading && color === 'pale',
-      'text-sm': loading && color === 'black'
+      'text-sm': loading && (color === 'black' || color === 'primary')
     }"
   >
     <IconLoadMore v-if="!loading && color === 'pale'" class="mr-1" />
     <IconLoading v-if="loading && color === 'pale'" class="mr-1.5" />
     <slot></slot>
-    <IconArrowRight v-if="loading && color === 'black'" class="size-4" />
+    <IconArrowRight v-if="loading && (color === 'black' || color === 'primary')" class="size-4" />
   </button>
 </template>
 
