@@ -2,6 +2,7 @@ import { createStore } from 'vuex'
 import userModule from './modules/user'
 import quizModule from './modules/quiz'
 import filterModule from './modules/filter'
+import playModule from './modules/play'
 import toastModule from './modules/toast'
 
 const store = createStore({
@@ -9,6 +10,7 @@ const store = createStore({
     user: userModule,
     quiz: quizModule,
     filter: filterModule,
+    play: playModule,
     toast: toastModule
   }
 })

@@ -1,5 +1,5 @@
 <template>
-  <LayoutsMain>
+  <LayoutsMain v-if="!playing">
     <div class="pt-6 px-4.5 desktop:px-24">
       <button class="hidden desktop:flex items-center gap-2 mb-6" @click="$router.go(-1)">
         <IconBack />
@@ -7,7 +7,7 @@
       </button>
       <div class="flex justify-between gap-10 mb-20">
         <main v-if="quiz" class="relative w-full">
-          <QuizInnerInfo :quiz="quiz" />
+          <QuizInnerInfo :quiz="quiz" @start="playing = true" />
         </main>
         <div class="hidden desktop:block space-y-8 w-98 shrink-0">
           <QuizCard v-for="quiz in similarQuizzes" :key="quiz.id" :quiz="quiz" :withBg="true" />
@@ -15,12 +15,14 @@
       </div>
     </div>
   </LayoutsMain>
+  <QuizInnerPlay v-else :quiz="quiz" @close="playing = false" />
 </template>
 
 <script>
 import LayoutsMain from '@/layouts/LayoutsMain.vue'
 import IconBack from '@/components/icons/IconBack.vue'
 import QuizInnerInfo from '@/components/quiz-inner/QuizInnerInfo.vue'
+import QuizInnerPlay from '@/components/quiz-inner/QuizInnerPlay.vue'
 import QuizCard from '@/components/shared/QuizCard.vue'
 import { getQuiz, getQuizzes } from '@/services/api/quiz'
 
@@ -29,10 +31,12 @@ export default {
     LayoutsMain,
     IconBack,
     QuizInnerInfo,
+    QuizInnerPlay,
     QuizCard
   },
   data() {
     return {
+      playing: false,
       quiz: null,
       similarQuizzes: null
     }

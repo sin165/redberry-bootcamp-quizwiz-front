@@ -31,7 +31,7 @@
         </p>
       </div>
       <div class="desktop:w-85">
-        <BaseButton>Start quizz</BaseButton>
+        <BaseButton @click="$emit('start')">Start quizz</BaseButton>
       </div>
     </div>
     <div v-if="quiz.picture" class="hidden desktop:block w-2/5 mb-12">
@@ -64,6 +64,7 @@ export default {
       type: Object,
       required: true
     }
-  }
+  },
+  emits: ['start']
 }
 </script>

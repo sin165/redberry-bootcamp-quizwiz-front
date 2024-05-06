@@ -34,8 +34,14 @@ export default {
       },
       colors: {
         primary: '#4B69FD',
+        'primary-light': '#4B69FD66',
         'primary-pale': '#4B69FD10',
         accent: '#FF5613',
+        pink: '#E72A8B',
+        green: '#027A48',
+        'green-light': '#039855',
+        'green-pale': '#F6FEF9',
+        'blue-pale': '#F5F6FF',
         'blue-light': '#BCC7FF',
         'blue-soft': '#EAFAFE80',
         'lavender-soft': '#FCE7F1',
@@ -73,6 +79,8 @@ export default {
         }
       },
       boxShadow: {
+        small: '0px 1px 4px 0px #00000026',
+        large: '0px 2px 14px 0px #00000026',
         solid: '4px 4px 0px 0px #000000',
         blurred: '0px 16px 54px 0px #0000001F',
         double: '0px 4px 6px -2px #10182808, 0px 12px 16px -4px #10182814',
