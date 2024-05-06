@@ -46,12 +46,14 @@
       </div>
     </div>
   </div>
+  <QuizInnerPlayResults v-if="results" :results="results" />
 </template>
 
 <script>
 import BaseButton from '@/components/base/BaseButton.vue'
 import IconClose from '@/components/icons/IconClose.vue'
 import QuizInnerPlayStats from '@/components/quiz-inner/QuizInnerPlayStats.vue'
+import QuizInnerPlayResults from '@/components/quiz-inner/QuizInnerPlayResults.vue'
 import QuizInnerPlayQuestion from '@/components/quiz-inner/QuizInnerPlayQuestion.vue'
 import { submitAnswers } from '@/services/api/quiz'
 import { formatTime } from '@/utils/formatting'
@@ -61,6 +63,7 @@ export default {
     BaseButton,
     IconClose,
     QuizInnerPlayStats,
+    QuizInnerPlayResults,
     QuizInnerPlayQuestion
   },
   props: {
@@ -74,7 +77,8 @@ export default {
     return {
       remainingTime: 0,
       timer: null,
-      loading: false
+      loading: false,
+      results: null
     }
   },
   computed: {
@@ -108,7 +112,7 @@ export default {
       let answers = this.$store.getters['play/answers']
       const { status, data } = await submitAnswers(this.quiz.id, answers, time)
       if (status === 200) {
-        console.log('data: ', data)
+        this.results = data
       }
       this.loading = false
     }
