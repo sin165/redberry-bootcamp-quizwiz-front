@@ -5,6 +5,7 @@ import LoginView from '@/views/LoginView.vue'
 import PasswordResetView from '@/views/PasswordResetView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
 import QuizListingView from '@/views/QuizListingView.vue'
+import QuizInnerView from '@/views/QuizInnerView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,6 +34,11 @@ const router = createRouter({
       path: '/quizzes',
       name: 'quiz-listing',
       component: QuizListingView
+    },
+    {
+      path: '/quizzes/:id',
+      name: 'quiz-inner',
+      component: QuizInnerView
     },
     {
       path: '/:catchAll(.*)',
