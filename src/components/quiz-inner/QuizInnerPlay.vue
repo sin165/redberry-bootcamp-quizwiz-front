@@ -113,6 +113,8 @@ export default {
       const { status, data } = await submitAnswers(this.quiz.id, answers, time)
       if (status === 200) {
         this.results = data
+      } else if (status === 500) {
+        this.$router.push({ name: 'server-error' })
       }
       this.loading = false
     }

@@ -57,6 +57,8 @@ export default {
       const { status, data } = await getQuiz(this.$route.params.id)
       if (status === 200) {
         this.quiz = data.data
+      } else if (status === 500) {
+        this.$router.push({ name: 'server-error' })
       }
       this.fetchSimilarQuizzes()
     },

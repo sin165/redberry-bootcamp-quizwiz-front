@@ -4,6 +4,7 @@ import RegisterView from '@/views/RegisterView.vue'
 import LoginView from '@/views/LoginView.vue'
 import PasswordResetView from '@/views/PasswordResetView.vue'
 import NotFoundView from '@/views/NotFoundView.vue'
+import ServerErrorView from '@/views/ServerErrorView.vue'
 import QuizListingView from '@/views/QuizListingView.vue'
 import QuizInnerView from '@/views/QuizInnerView.vue'
 
@@ -39,6 +40,11 @@ const router = createRouter({
       path: '/quizzes/:id',
       name: 'quiz-inner',
       component: QuizInnerView
+    },
+    {
+      path: '/server-error',
+      name: 'server-error',
+      component: ServerErrorView
     },
     {
       path: '/:catchAll(.*)',
