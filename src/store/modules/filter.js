@@ -2,6 +2,7 @@ export default {
   namespaced: true,
   state() {
     return {
+      term: '',
       changed: false,
       numberOfChanges: 0,
       sort: null,
@@ -12,6 +13,9 @@ export default {
     }
   },
   mutations: {
+    setTerm(state, payload) {
+      state.term = payload
+    },
     setChanged(state, payload) {
       state.changed = payload
     },
@@ -54,6 +58,9 @@ export default {
     }
   },
   actions: {
+    setTerm(context, payload) {
+      context.commit('setTerm', payload)
+    },
     setChanged(context, payload) {
       context.commit('setChanged', payload)
     },
@@ -88,6 +95,7 @@ export default {
       context.commit('setChanged', true)
     },
     setFromQuery(context, payload) {
+      context.commit('setTerm', payload.term)
       context.commit('setSort', payload.sort)
       context.commit('setDifficulties', payload.difficulties?.split(',').map(Number) ?? [])
       context.commit('setCategories', payload.categories?.split(',').map(Number) ?? [])
@@ -96,6 +104,7 @@ export default {
       context.commit('updateCurrentCategories')
     },
     reset(context) {
+      context.commit('setTerm', '')
       context.commit('setSort', null)
       context.commit('setDifficulties', [])
       context.commit('setCategories', [])
@@ -104,6 +113,9 @@ export default {
     }
   },
   getters: {
+    term(state) {
+      return state.term
+    },
     changed(state) {
       return state.changed
     },
@@ -121,6 +133,9 @@ export default {
     },
     all(state) {
       let filters = {}
+      if (state.term) {
+        filters.term = state.term
+      }
       if (state.sort) {
         filters.sort = state.sort
       }
@@ -142,7 +157,13 @@ export default {
       return state.currentCategories
     },
     empty(state) {
-      return !state.sort && !state.difficulties.length && !state.categories.length && !state.status
+      return (
+        !state.term &&
+        !state.sort &&
+        !state.difficulties.length &&
+        !state.categories.length &&
+        !state.status
+      )
     }
   }
 }

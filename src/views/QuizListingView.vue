@@ -19,6 +19,7 @@
           Load more
         </BaseButton>
       </main>
+      <QuizListingSearch @confirm="confirm" />
     </div>
   </LayoutsMain>
 </template>
@@ -27,6 +28,7 @@
 import LayoutsMain from '@/layouts/LayoutsMain.vue'
 import QuizListingFilter from '@/components/quiz-listing/QuizListingFilter.vue'
 import QuizListingCategoriesBar from '@/components/quiz-listing/QuizListingCategoriesBar.vue'
+import QuizListingSearch from '@/components/quiz-listing/QuizListingSearch.vue'
 import QuizCard from '@/components/shared/QuizCard.vue'
 import BaseButton from '@/components/base/BaseButton.vue'
 import { getCategories, getQuizzes } from '@/services/api/quiz'
@@ -36,6 +38,7 @@ export default {
     LayoutsMain,
     QuizListingFilter,
     QuizListingCategoriesBar,
+    QuizListingSearch,
     QuizCard,
     BaseButton
   },
@@ -94,6 +97,7 @@ export default {
       const difficulties = this.$store.getters['filter/difficulties'].toString()
       const status = this.$store.getters['filter/status']
       const sort = this.$store.getters['filter/sort']
+      const term = this.$store.getters['filter/term']
       if (categories) {
         $query['categories'] = categories
       }
@@ -105,6 +109,9 @@ export default {
       }
       if (sort) {
         $query['sort'] = sort
+      }
+      if (term) {
+        $query['term'] = term
       }
       this.$router.push({
         name: 'quiz-listing',

@@ -11,7 +11,8 @@
       </RouterLink>
     </div>
     <div class="flex justify-end items-center gap-4">
-      <a href="#" class="hidden desktop:flex group">
+      <div id="search" class="relative"></div>
+      <div class="hidden desktop:flex group">
         <RouterLink
           v-if="!username"
           :to="{ name: 'register' }"
@@ -19,7 +20,7 @@
         >
           Sign up
         </RouterLink>
-      </a>
+      </div>
       <RouterLink
         v-if="!username"
         :to="{ name: 'login' }"
