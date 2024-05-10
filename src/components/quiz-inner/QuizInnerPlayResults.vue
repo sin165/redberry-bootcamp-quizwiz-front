@@ -69,6 +69,9 @@ export default {
     formattedTime() {
       return formatTime(this.results.time)
     }
+  },
+  mounted() {
+    this.$store.dispatch('quiz/setQuizzes', [])
   }
 }
 </script>
