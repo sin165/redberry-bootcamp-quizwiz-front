@@ -10,6 +10,7 @@
         alt="quiz picture"
         class="size-full object-cover rounded-lg"
       />
+      <IconArtQuizDefault v-else class="size-full" />
     </RouterLink>
     <ul class="flex items-center flex-wrap mb-3">
       <template v-for="(category, index) in quiz.categories" :key="category.id">
@@ -79,6 +80,7 @@
 
 <script>
 import { RouterLink } from 'vue-router'
+import IconArtQuizDefault from '@/components/icons/IconArtQuizDefault.vue'
 import IconCompleted from '@/components/icons/IconCompleted.vue'
 import IconNotCompleted from '@/components/icons/IconNotCompleted.vue'
 import IconDifficulty from '@/components/icons/IconDifficulty.vue'
@@ -87,6 +89,7 @@ import IconPoints from '@/components/icons/IconPoints.vue'
 export default {
   components: {
     RouterLink,
+    IconArtQuizDefault,
     IconCompleted,
     IconNotCompleted,
     IconDifficulty,
