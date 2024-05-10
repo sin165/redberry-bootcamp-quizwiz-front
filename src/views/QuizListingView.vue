@@ -80,6 +80,8 @@ export default {
       if (status === 200) {
         this.$store.dispatch('quiz/setQuizzes', data.data)
         this.$store.dispatch('quiz/setNextPage', data.links.next)
+      } else if (status === 500) {
+        this.$router.push({ name: 'server-error' })
       }
     },
     async loadMoreQuizzes() {
@@ -88,6 +90,8 @@ export default {
       if (status === 200) {
         this.$store.dispatch('quiz/addQuizzes', data.data)
         this.$store.dispatch('quiz/setNextPage', data.links.next)
+      } else if (status === 500) {
+        this.$router.push({ name: 'server-error' })
       }
       this.loading = false
     },
