@@ -106,10 +106,13 @@ export default {
       }, 1000)
     },
     async submit() {
+      let answers = this.$store.getters['play/answers']
+      if (answers.length === 0) {
+        return
+      }
       this.loading = true
       clearInterval(this.timer)
       let time = this.quiz.time_limit - this.remainingTime
-      let answers = this.$store.getters['play/answers']
       const { status, data } = await submitAnswers(this.quiz.id, answers, time)
       if (status === 200) {
         this.results = data
