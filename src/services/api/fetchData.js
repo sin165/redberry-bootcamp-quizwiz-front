@@ -33,7 +33,9 @@ export const fetchData = async (
   }
 
   let url = new URL(path)
-  url.search = new URLSearchParams(params)
+  if (params) {
+    url.search = new URLSearchParams(params)
+  }
 
   const response = await fetch(url, options)
   const data = await response.json()
