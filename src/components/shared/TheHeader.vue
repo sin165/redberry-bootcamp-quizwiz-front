@@ -34,7 +34,8 @@
         class="hidden desktop:flex justify-center items-center relative size-8 border border-custom-gray-300 rounded-full group"
         tabindex="-1"
       >
-        <IconProfile />
+        <img v-if="avatar" :src="avatar" alt="avatar" class="rounded-full" />
+        <IconProfile v-else />
         <div
           class="hidden group-focus:flex justify-between items-end absolute w-80 h-40 -top-1 -right-1 border border-custom-gray-300 bg-white rounded-lg px-6 py-8 shadow"
         >
@@ -42,7 +43,8 @@
             <div
               class="flex justify-center items-center size-10 border border-custom-gray-300 rounded-full mb-3"
             >
-              <IconProfile />
+              <img v-if="avatar" :src="avatar" alt="avatar" class="rounded-full" />
+              <IconProfile v-else />
             </div>
             <p class="text-sm font-semibold text-custom-gray-900">{{ username }}</p>
             <p class="text-sm text-custom-gray-600">{{ email }}</p>
@@ -62,6 +64,7 @@
     v-if="menuOpen"
     :username="username"
     :email="email"
+    :avatar="avatar"
     @close="menuOpen = false"
     @logout="logOut"
   />
@@ -98,6 +101,9 @@ export default {
     },
     email() {
       return this.$store.getters['user/email']
+    },
+    avatar() {
+      return this.$store.getters['user/avatar']
     }
   },
   methods: {
