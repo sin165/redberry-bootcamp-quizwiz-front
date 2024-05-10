@@ -26,7 +26,7 @@
             </div>
           </div>
           <div class="bg-accent h-72 pt-18 pl-12 desktop:pl-24">
-            <p class="text-7.5xl text-white font-raleway font-black">200+</p>
+            <p class="text-7.5xl text-white font-raleway font-black">{{ quizCount }}+</p>
             <a
               href="#"
               class="text-5xl text-white font-raleway font-black underline flex gap-6 mt-6 desktop:no-underline"
@@ -36,7 +36,7 @@
             </a>
           </div>
           <div class="bg-primary h-72 pt-12 pl-12 desktop:h-60 desktop:pl-24">
-            <p class="text-7.5xl text-white font-raleway font-black">25+</p>
+            <p class="text-7.5xl text-white font-raleway font-black">{{ categoryCount }}+</p>
             <a
               href="#"
               class="text-5xl text-white font-raleway font-black underline flex gap-6 mt-6 desktop:no-underline"
@@ -57,6 +57,7 @@ import IconHeroTitle from '@/components/icons/IconHeroTitle.vue'
 import IconArtHomepage from '@/components/icons/IconArtHomepage.vue'
 import IconMissionText from '@/components/icons/IconMissionText.vue'
 import IconArrowUpRight from '@/components/icons/IconArrowUpRight.vue'
+import { getStatistics } from '@/services/api/info'
 
 export default {
   components: {
@@ -65,6 +66,28 @@ export default {
     IconArtHomepage,
     IconMissionText,
     IconArrowUpRight
+  },
+  computed: {
+    quizCount() {
+      return this.$store.getters['info/quizCount']
+    },
+    categoryCount() {
+      return this.$store.getters['info/categoryCount']
+    }
+  },
+  created() {
+    if (!this.$store.getters['info/quizCount']) {
+      this.fetchStatistics()
+    }
+  },
+  methods: {
+    async fetchStatistics() {
+      const { status, data } = await getStatistics()
+      if (status === 200) {
+        this.$store.dispatch('info/setQuizCount', data.quiz_count)
+        this.$store.dispatch('info/setCategoryCount', data.category_count)
+      }
+    }
   }
 }
 </script>
