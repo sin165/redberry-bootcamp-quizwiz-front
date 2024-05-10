@@ -3,17 +3,20 @@ export default {
   state() {
     return {
       username: null,
-      email: null
+      email: null,
+      avatar: null
     }
   },
   mutations: {
     setUser(state, payload) {
       state.username = payload.username
       state.email = payload.email
+      state.avatar = payload.avatar
     },
     unsetUser(state) {
       state.username = null
       state.email = null
+      state.avatar = null
     }
   },
   actions: {
@@ -30,6 +33,9 @@ export default {
     },
     email(state) {
       return state.email
+    },
+    avatar(state) {
+      return state.avatar
     }
   }
 }

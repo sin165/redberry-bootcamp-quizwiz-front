@@ -19,7 +19,8 @@
         <div
           class="size-16 border border-custom-gray-300 rounded-full flex items-center justify-center"
         >
-          <IconProfile />
+          <img v-if="avatar" :src="avatar" alt="avatar" class="rounded-full" />
+          <IconProfile v-else />
         </div>
         <div>
           <p class="font-semibold text-custom-gray-900">{{ username }}</p>
@@ -70,6 +71,10 @@ export default {
       required: false
     },
     email: {
+      type: String,
+      required: false
+    },
+    avatar: {
       type: String,
       required: false
     }
