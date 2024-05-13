@@ -21,6 +21,7 @@ export default {
     }
   },
   created() {
+    document.title = 'QuizWiz'
     this.fetchUser()
   },
   methods: {
