@@ -59,11 +59,15 @@ export default {
     }
   },
   created() {
+    let needsRefresh = false
+    if (Object.keys(this.$route.query).length === 0 && !this.$store.getters['filter/empty']) {
+      needsRefresh = true
+    }
     this.$store.dispatch('filter/setFromQuery', this.$route.query)
     if (!this.$store.getters['quiz/categories'].length) {
       this.fetchCategories()
     }
-    if (!this.$store.getters['quiz/quizzes'].length) {
+    if (!this.$store.getters['quiz/quizzes'].length || needsRefresh) {
       this.fetchQuizzes()
     }
   },

@@ -31,7 +31,10 @@
         </p>
       </div>
       <div class="desktop:w-85">
-        <BaseButton @click="$emit('start')">Start quizz</BaseButton>
+        <BaseButton v-if="!quiz.auth_user_result" @click="$emit('start')">Start quizz</BaseButton>
+        <p v-else class="text-xs font-semibold text-custom-gray-500 mb-4 desktop:mb-8">
+          You have already taken this quiz
+        </p>
       </div>
     </div>
     <div v-if="quiz.picture" class="hidden desktop:block w-2/5 mb-12">

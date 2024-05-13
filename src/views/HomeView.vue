@@ -26,24 +26,26 @@
             </div>
           </div>
           <div class="bg-accent h-72 pt-18 pl-12 desktop:pl-24">
-            <p class="text-7.5xl text-white font-raleway font-black">{{ quizCount }}+</p>
-            <a
-              href="#"
-              class="text-5xl text-white font-raleway font-black underline flex gap-6 mt-6 desktop:no-underline"
-            >
-              <span>Quiz games</span>
-              <IconArrowUpRight class="mt-3 desktop:hidden" />
-            </a>
+            <RouterLink :to="{ name: 'quiz-listing' }" class="block w-max">
+              <p class="text-7.5xl text-white font-raleway font-black">{{ quizCount }}+</p>
+              <p
+                class="text-5xl text-white font-raleway font-black underline flex gap-6 mt-6 desktop:no-underline"
+              >
+                <span>Quiz games</span>
+                <IconArrowUpRight class="mt-3 desktop:hidden" />
+              </p>
+            </RouterLink>
           </div>
           <div class="bg-primary h-72 pt-12 pl-12 desktop:h-60 desktop:pl-24">
-            <p class="text-7.5xl text-white font-raleway font-black">{{ categoryCount }}+</p>
-            <a
-              href="#"
-              class="text-5xl text-white font-raleway font-black underline flex gap-6 mt-6 desktop:no-underline"
-            >
-              <span class="w-min desktop:w-max">Different genre</span>
-              <IconArrowUpRight class="mt-3 desktop:hidden" />
-            </a>
+            <RouterLink :to="{ name: 'quiz-listing' }" class="block w-max">
+              <p class="text-7.5xl text-white font-raleway font-black">{{ categoryCount }}+</p>
+              <p
+                class="text-5xl text-white font-raleway font-black underline flex gap-6 mt-6 desktop:no-underline"
+              >
+                <span class="w-min desktop:w-max">Different genre</span>
+                <IconArrowUpRight class="mt-3 desktop:hidden" />
+              </p>
+            </RouterLink>
           </div>
         </div>
       </section>
@@ -52,6 +54,7 @@
 </template>
 
 <script>
+import { RouterLink } from 'vue-router'
 import LayoutsMain from '@/layouts/LayoutsMain.vue'
 import IconHeroTitle from '@/components/icons/IconHeroTitle.vue'
 import IconArtHomepage from '@/components/icons/IconArtHomepage.vue'
@@ -61,6 +64,7 @@ import { getStatistics } from '@/services/api/info'
 
 export default {
   components: {
+    RouterLink,
     LayoutsMain,
     IconHeroTitle,
     IconArtHomepage,
