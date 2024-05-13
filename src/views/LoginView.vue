@@ -6,7 +6,9 @@
       </div>
     </template>
     <template #default>
-      <h1 class="font-extrabold text-3xl text-center desktop:text-left">Hi, Welcome! 👋</h1>
+      <h1 class="font-extrabold text-3xl font-raleway text-center desktop:text-left">
+        Hi, Welcome! 👋
+      </h1>
       <p class="text-center text-black-transparent mt-6 desktop:absolute desktop:-bottom-12">
         Don’t have an account?
         <RouterLink :to="{ name: 'register' }" class="text-primary font-semibold">

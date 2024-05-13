@@ -30,7 +30,7 @@
       </div>
     </div>
     <div
-      class="border-t border-custom-gray-300-transparent h-16 flex justify-start items-center px-10 desktop:justify-end desktop:px-24"
+      class="font-raleway border-t border-custom-gray-300-transparent h-16 flex justify-start items-center px-10 desktop:justify-end desktop:px-24"
     >
       © 2024 QW. All rights reserved
     </div>

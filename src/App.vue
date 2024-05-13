@@ -1,6 +1,8 @@
 <template>
-  <RouterView />
-  <ToastNotification v-if="toastVisible" />
+  <div class="font-inter">
+    <RouterView />
+    <ToastNotification v-if="toastVisible" />
+  </div>
 </template>
 
 <script>
@@ -19,6 +21,7 @@ export default {
     }
   },
   created() {
+    document.title = 'QuizWiz'
     this.fetchUser()
   },
   methods: {

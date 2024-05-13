@@ -7,7 +7,8 @@ export default {
         desktop: '1440px'
       },
       fontFamily: {
-        raleway: ['Raleway', 'sans-serif']
+        raleway: ['Raleway', 'sans-serif'],
+        inter: ['Inter', 'sans-serif']
       },
       fontSize: {
         xxs: ['0.625rem', '0.75rem'],

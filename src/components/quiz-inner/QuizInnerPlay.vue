@@ -10,12 +10,14 @@
           {{ formattedRemainingTime }}
         </p>
       </div>
-      <h1 class="hidden desktop:block text-center font-bold text-lg">{{ quiz.title }}</h1>
+      <h1 class="hidden desktop:block text-center font-bold font-raleway text-lg">
+        {{ quiz.title }}
+      </h1>
       <QuizInnerPlayStats :quiz="quiz" class="hidden desktop:flex" />
       <IconClose class="shrink-0 cursor-pointer" @click="$emit('close')" />
     </div>
     <div class="p-4.5 desktop:hidden">
-      <h1 class="text-center font-bold text-lg">{{ quiz.title }}</h1>
+      <h1 class="text-center font-bold font-raleway text-lg">{{ quiz.title }}</h1>
       <QuizInnerPlayStats :quiz="quiz" />
     </div>
   </header>
