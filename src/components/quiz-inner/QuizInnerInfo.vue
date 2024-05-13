@@ -8,7 +8,7 @@
             <li class="text-sm text-primary font-semibold">{{ category.name }}</li>
           </template>
         </ul>
-        <h1 class="text-4.5xl font-bold mb-4">{{ quiz.title }}</h1>
+        <h1 class="text-4.5xl font-bold font-raleway mb-4">{{ quiz.title }}</h1>
       </div>
       <p class="text-sm font-semibold text-custom-gray-500 mb-4 desktop:mb-8">
         {{ quiz.description }}

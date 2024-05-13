@@ -4,7 +4,7 @@
       <section class="mt-5">
         <IconHeroTitle class="ml-12 mb-2 desktop:ml-24 desktop:w-164 desktop:h-64" />
         <p
-          class="ml-12 mb-6 text-lg text-custom-gray-450 font-semibold desktop:text-3xl desktop:ml-24 desktop:mb-0"
+          class="ml-12 mb-6 text-lg text-custom-gray-450 font-raleway font-semibold desktop:text-3xl desktop:ml-24 desktop:mb-0"
         >
           Play with us, Explore with us
         </p>

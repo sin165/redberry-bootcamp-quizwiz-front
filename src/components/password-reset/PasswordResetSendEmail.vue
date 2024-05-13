@@ -1,5 +1,7 @@
 <template>
-  <h1 class="font-extrabold text-3xl text-center desktop:text-left">Forgot password?</h1>
+  <h1 class="font-extrabold text-3xl font-raleway text-center desktop:text-left">
+    Forgot password?
+  </h1>
   <p class="text-center text-black-transparent mt-6 desktop:max-w-107 desktop:text-left">
     Don’t worry! It happens. Please enter the email associated with your account.
   </p>

@@ -16,7 +16,7 @@
         <RouterLink
           v-if="!username"
           :to="{ name: 'register' }"
-          class="bg-black text-white px-6 py-3 rounded text-sm font-bold border border-white group-hover:bg-white group-hover:text-black group-hover:border-black group-hover:shadow-solid group-hover:-translate-x-1 group-hover:-translate-y-1"
+          class="bg-black text-white px-6 py-3 rounded text-sm font-bold font-raleway border border-white group-hover:bg-white group-hover:text-black group-hover:border-black group-hover:shadow-solid group-hover:-translate-x-1 group-hover:-translate-y-1"
         >
           Sign up
         </RouterLink>
@@ -24,7 +24,7 @@
       <RouterLink
         v-if="!username"
         :to="{ name: 'login' }"
-        class="hidden desktop:flex items-center gap-1 mx-4 text-sm font-bold text-primary group"
+        class="hidden desktop:flex items-center gap-1 mx-4 text-sm font-bold font-raleway text-primary group"
       >
         <span>Log in</span>
         <IconArrowRight class="text-transparent group-hover:text-inherit" />

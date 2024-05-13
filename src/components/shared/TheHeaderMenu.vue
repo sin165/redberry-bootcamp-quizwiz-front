@@ -30,14 +30,14 @@
       <RouterLink
         v-if="!username"
         :to="{ name: 'register' }"
-        class="block mt-5 bg-black text-white text-sm font-bold text-center p-3.5 rounded"
+        class="block mt-5 bg-black text-white text-sm font-bold font-raleway text-center p-3.5 rounded"
       >
         Sign up
       </RouterLink>
       <RouterLink
         v-if="!username"
         :to="{ name: 'login' }"
-        class="block mt-5 bg-custom-gray-70 text-primary text-sm font-bold text-center p-3.5 rounded"
+        class="block mt-5 bg-custom-gray-70 text-primary text-sm font-bold font-raleway text-center p-3.5 rounded"
       >
         Log in
       </RouterLink>
