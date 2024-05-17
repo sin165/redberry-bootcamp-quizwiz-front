@@ -1,41 +1,73 @@
-# quizwiz
+# QuizWiz
 
-This template should help get you started developing with Vue 3 in Vite.
+## A project for the REDBERRY internship
 
-## Recommended IDE Setup
+This is the frontend of the QuizWiz application where users can browse and take quizzes.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+#
 
-## Customize configuration
+### Table of Contents
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- [Prerequisites](#prerequisites)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Development](#development)
+- [Resources](#resources)
 
-## Project Setup
+#
+
+### Prerequisites
+
+- *node@18.3 and up*
+- _npm@10 and up_
+
+#
+
+### Tech Stack
+
+- [Vue 3](https://vuejs.org/)
+- [Tailwind](https://tailwindcss.com/)
+- [ESLint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+
+#
+
+### Getting Started
+
+1\. Clone the repository:
+
+```sh
+git clone git@github.com:RedberryInternship/quizwiz-front-tamar-sinauridze.git
+```
+
+2\. Install dependencies:
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+3\. Copy **.env** file:
+
+```sh
+cp .env.example .env.local
+```
+
+4\. If you are going to make changes in this project, you also need to install and configure ESLint and Prettier in your code editor using [this guide](https://redberry.gitbook.io/resources/vue/eslint-and-prettier-is-gamartva-vue.js-proektshi).
+
+#
+
+### Development
+
+Run the server:
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+The server should be running on http://localhost:5173/
 
-```sh
-npm run build
-```
+#
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+### Resources
 
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+- [Figma](https://www.figma.com/file/QTWoxa2OYVayZ04WJ0ZZ9k/QuizWiz?type=design&node-id=1238-2202&mode=design&t=UX8IDJLhO3p8kb2k-0) - The design of the project
