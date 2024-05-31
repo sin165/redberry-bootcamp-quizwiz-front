@@ -2,11 +2,18 @@
   <header
     class="fixed w-full flex justify-between items-center h-18 bg-white border-b border-custom-gray-100 pl-4 pr-3 desktop:px-24 desktop:border-custom-gray-500-transparent z-30"
   >
-    <div class="flex justify-start items-center gap-14">
+    <div class="flex justify-start items-center gap-11">
       <RouterLink :to="{ name: 'home' }">
         <IconLogo />
       </RouterLink>
-      <RouterLink :to="{ name: 'quiz-listing' }" class="text-custom-gray-600 font-semibold text-sm">
+      <RouterLink
+        :to="{ name: 'quiz-listing' }"
+        class="text-custom-gray-600 font-semibold text-sm flex items-center gap-2"
+      >
+        <div
+          class="size-2.5 rounded-full"
+          :class="{ 'bg-primary': $route.name === 'quiz-listing' || $route.name === 'quiz-inner' }"
+        ></div>
         Quizzes
       </RouterLink>
     </div>
